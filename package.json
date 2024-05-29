@@ -1,0 +1,47 @@
+{
+  "name": "cover-view",
+  "version": "1.0.0",
+  "description": "Create awesome cover images for your blog posts quickly.",
+  "homepage": "https://github.com/CoverView",
+  "author": "1874 <me@mail.1874.cool>",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "keywords": [
+    "cover",
+    "blog"
+  ],
+  "scripts": {
+    "build": "pnpm --filter=@flowusx/* run build",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "husky install",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && pnpm changeset publish",
+    "beta": "pnpm changeset pre enter beta",
+    "beta:exit": "pnpm changeset pre exit"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.25.2",
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint": "^8.57.0",
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.4",
+    "prettier": "^2.7.1",
+    "typescript": "^5.4.2",
+    "@types/node": "^20.12.12"
+  }
+}

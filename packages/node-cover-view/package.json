@@ -1,0 +1,24 @@
+{
+  "name": "node-cover-view",
+  "version": "0.0.0",
+  "description": "CoverView for NodeJs",
+  "keywords": [
+    "cover",
+    "blog"
+  ],
+  "author": "1874 <me@mail.1874.cool>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoverView.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && tsup"
+  }
+}

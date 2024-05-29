@@ -1,0 +1,4 @@
+packages:
+  - 'packages/node-cover-view'
+  - 'packages/react-cover-view'
+  - 'site'

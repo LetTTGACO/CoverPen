@@ -1,0 +1,6 @@
+.idea
+node_modules
+packages/**/package-lock.json
+.DS_Store
+pnpm-lock.yaml
+.run
