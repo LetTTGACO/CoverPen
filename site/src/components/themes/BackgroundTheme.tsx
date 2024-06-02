@@ -6,14 +6,16 @@ import { ImgContext } from "@/utils/ImgContext";
 import Image from "next/image";
 
 const BackgroundTheme = ({ config }) => {
-  const { title, author, font, icon, customIcon, platform, bgColor } = config;
+  const { title, author, font, icon, customIcon, platform, backgroundColor } = config;
 
   // const [image, setImage] = useState({})
 
   const [imageList, setImageList] = useState([]);
   const [searchText, setSearchText] = useState("dev");
 
-  const { unsplashImage, setUnsplashImage } = useContext(ImgContext);
+  // const { unsplashImage, setUnsplashImage } = useContext(ImgContext);
+  const unsplashImage = ''
+  const setUnsplashImage = () => {}
 
   const searchImages = () => {
     unsplash.search
@@ -59,7 +61,7 @@ const BackgroundTheme = ({ config }) => {
 
   return (
     <div className=" bg-white rounded">
-      <div className={` overflow-y-hidden flex flex-col rounded ${platform}`} style={{ backgroundColor: bgColor }}>
+      <div className={` overflow-y-hidden flex flex-col rounded ${platform}`} style={{ backgroundColor: backgroundColor }}>
         <div className="flex flex-row  items-center bg-white  justify-center  ">
           <div className="w-full">
             {unsplashImage ? (

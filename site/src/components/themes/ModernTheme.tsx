@@ -4,14 +4,14 @@ import React from "react";
 import Image from "next/image";
 
 const ModernTheme = ({ config }) => {
-  const { title, bgColor, pattern, author, icon, font, customIcon, platform } = config;
+  const { title, backgroundColor, pattern, author, icon, font, customIcon, platform } = config;
 
   return (
     <div className="w-full p-4 bg-white ">
       <div className=" overflow-y-hidden w-full flex  items-center">
         <div
           className={`  h-full w-full rounded-xl  p-4 text-gray-800 flex  items-center ${pattern} ${platform}`}
-          style={{ backgroundColor: bgColor }}
+          style={{ backgroundColor: backgroundColor }}
         >
           {customIcon ? (
             <div className="  mx-auto items-center justify-center flex">

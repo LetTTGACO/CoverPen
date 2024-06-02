@@ -6,7 +6,7 @@ import { ImgContext } from "@/utils/ImgContext";
 import Image from "next/image";
 
 const StylishTheme = ({ config }) => {
-  const { title, author, font, icon, customIcon, platform, bgColor } = config;
+  const { title, author, font, icon, customIcon, platform, backgroundColor } = config;
 
   // const [image, setImage] = useState({})
 
@@ -59,7 +59,7 @@ const StylishTheme = ({ config }) => {
 
   return (
     <div className=" bg-white rounded">
-      <div className={` overflow-y-hidden flex flex-col rounded ${platform}`} style={{ backgroundColor: bgColor }}>
+      <div className={` overflow-y-hidden flex flex-col rounded ${platform}`} style={{ backgroundColor: backgroundColor }}>
         <div className="flex flex-row  items-center bg-white  justify-center m-4 ">
           <div className="h-full w-1/2  bg-white rounded-l-xl">
             <div className={`${font} px-12 justify-center text-left rounded-xl h-full p-4 flex flex-col`}>

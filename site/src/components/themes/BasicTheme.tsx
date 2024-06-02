@@ -1,37 +1,35 @@
 "use client";
 
-import React from "react";
+import React, { FC } from "react";
 import Image from "next/image";
+import type { FormValue } from "@/hooks/useFormStore";
 
-const BasicTheme = ({ config }) => {
-  const { title, bgColor, pattern, author, icon, font, customIcon, platform } = config;
-
+const BasicTheme: FC<{ config: FormValue }> = ({ config }) => {
+  const { title, backgroundColor, borderRadius, author, icon, font, customIcon, aspectRatio, width } = config;
   return (
-    <div className="p-4 bg-white ">
-      <div
-        className={`overflow-y-hidden flex  text-gray-800 items-center h-full ${platform} ${pattern} `}
-        style={{ backgroundColor: bgColor }}
-      >
-        <div className={`${font} bg-white md:w-10/12  m-auto flex flex-col pt-12 rounded-xl`}>
-          <div className="px-12">
-            <div>
-              <h1 className="text-3xl md:text-5xl text-gray-800 font-bold text-center">{title}</h1>
+    <div
+      className={`mx-auto h-auto my-0 flex text-gray-800 items-center`}
+      style={{ backgroundColor, width, aspectRatio }}
+    >
+      <div className={`${font} bg-white w-10/12  m-auto flex flex-col pt-10 rounded-xl`} style={{ borderRadius }}>
+        <div className="px-12">
+          <div>
+            <h1 className="leading-[1.4] text-[2.4rem] text-gray-800 font-bold text-center">{title}</h1>
+          </div>
+        </div>
+
+        <div className="flex box-border p-4 mx-4 rounded-xl items-center bg-transparent">
+          {customIcon ? (
+            <div className="w-16 h-16">
+              <Image src={customIcon} width={64} height={64} alt="img" className="rounded-full bg-white border-white" />
             </div>
-          </div>
+          ) : (
+            <div className="mr-auto ml-2 items-center justify-center flex">
+              <i className={`devicon-${icon}-plain p-2 dev-icon text-5xl`}></i>
+            </div>
+          )}
 
-          <div className=" flex mx-4  p-4 rounded-xl items-center bg-white">
-            {customIcon ? (
-              <div className="w-12 h-12  ">
-                <Image src={customIcon} alt="img" className="rounded-full bg-white p-1 border-white" />
-              </div>
-            ) : (
-              <div className="mr-auto ml-2 items-center justify-center flex">
-                <i className={`devicon-${icon.value}-plain  p-4 dev-icon text-5xl`}></i>
-              </div>
-            )}
-
-            <h2 className="text-xl ml-auto mr-2 font-semibold">{author}</h2>
-          </div>
+          <h2 className="text-xl ml-auto mr-2 font-semibold">{author}</h2>
         </div>
       </div>
     </div>

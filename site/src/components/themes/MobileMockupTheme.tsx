@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 const MobileMockupTheme = ({ config }) => {
-  const { bgColor, platform, title, font } = config;
+  const { backgroundColor, platform, title, font } = config;
 
   const [image, setImage] = useState();
 
@@ -12,7 +12,7 @@ const MobileMockupTheme = ({ config }) => {
     <div className="p-4 bg-white">
       <div
         className={`overflow-y-hidden flex flex-row px-10 items-center justify-center rounded px-8 pt-4  ${platform}`}
-        style={{ backgroundColor: bgColor }}
+        style={{ backgroundColor: backgroundColor }}
       >
         <h1 className={`${font} text-2xl w-1/2 md:text-4xl px-4 text-white font-bold text-left`}>{title}</h1>
 

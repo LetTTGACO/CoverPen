@@ -3,13 +3,13 @@
 import React from "react";
 import Image from "next/image";
 const OutlineTheme = ({ config }) => {
-  const { title, bgColor, author, icon, font, customIcon, platform } = config;
+  const { title, backgroundColor, author, icon, font, customIcon, platform } = config;
 
   return (
     <div className="p-4 bg-white ">
       <div
         className={`overflow-y-hidden rounded flex flex-col text-gray-800 px-10  ${platform} `}
-        style={{ backgroundColor: bgColor }}
+        style={{ backgroundColor: backgroundColor }}
       >
         <div className={`${font} rounded-2xl py-6 flex flex-col  `}>
           {customIcon ? (

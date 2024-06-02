@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 const PreviewTheme = ({ config }) => {
-  const { bgColor, platform, title, font } = config;
+  const { backgroundColor, platform, title, font } = config;
 
   const [image, setImage] = useState();
 
@@ -12,7 +12,7 @@ const PreviewTheme = ({ config }) => {
     <div className="p-4 bg-white">
       <div
         className={`overflow-y-hidden flex flex-col rounded px-4 pt-4 ${platform}`}
-        style={{ backgroundColor: bgColor }}
+        style={{ backgroundColor: backgroundColor }}
       >
         <h1 className={`${font} text-2xl md:text-3xl p-10 text-white font-bold text-center`}>{title}</h1>
 
