@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+
 import React from "react";
-import { Providers } from "@/app/providers";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { ConfigProvider } from "antd";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +24,9 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
       </head>
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <AntdRegistry>
+          <ConfigProvider>{children}</ConfigProvider>
+        </AntdRegistry>
       </body>
     </html>
   );

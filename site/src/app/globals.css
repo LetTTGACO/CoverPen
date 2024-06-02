@@ -1,16 +1,26 @@
+@layer tailwind-base, antd;
 
-@tailwind base;
+@layer tailwind-base {
+  @tailwind base;
+}
 @tailwind components;
 @tailwind utilities;
 
+/*body {*/
+/*  !*TODO 暗黑主题*!*/
+/*  background-color: #f0f5fa;*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  margin: 0;*/
+/*  font-family: "Quicksand", sans-serif;*/
+/*  -webkit-font-smoothing: antialiased;*/
+/*  -moz-osx-font-smoothing: grayscale;*/
+/*}*/
 
-body {
-  /*TODO 暗黑主题*/
-  background-color: #f0f5fa;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  font-family: "Quicksand", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/*覆盖 ant formitem 的 marginBottom*/
+.ant-form-item {
+  margin-bottom: 12px !important;
+}
+::-webkit-scrollbar {
+  width: 0px;
 }

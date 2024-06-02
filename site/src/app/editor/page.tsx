@@ -1,25 +1,36 @@
 "use client";
-import { NextUIProvider } from "@nextui-org/react";
 import RenderViewCard from "@/components/card/RenderViewCard";
 import FormCard from "@/components/card/FormCard";
-import useFormStore from "@/hooks/useFormStore";
+import { Button, Flex, Layout } from "antd";
+import React from "react";
+const { Footer, Sider, Content } = Layout;
 
 export default function Editor() {
-  const formValue = useFormStore();
   return (
-    <NextUIProvider>
-      <div className="flex flex-col-reverse lg:flex-row max-h-layout overflow-y-auto">
-        <div className="lg:w-[400px] flex-shrink-0 lg:h-layout bg-white lg:border-r">
+    <>
+      <Layout className="flex flex-col-reverse lg:flex-row">
+        <Sider
+          width={400}
+          breakpoint="lg"
+          collapsedWidth="100%"
+          className="lg:h-layout bg-white lg:border-r overflow-y-auto"
+        >
           <FormCard />
-        </div>
-        <div className="w-full py-6 lg:py-0 bg-white px-8 ">
-          <div className="overflow-x-auto max-h-layout ">
-            <div className="py-16" style={{ minWidth: formValue.width }}>
-              <RenderViewCard />
-            </div>
-          </div>
-        </div>
-      </div>
-    </NextUIProvider>
+          <Footer className="z-10 flex items-center justify-center border-t-[1px] bg-white w-[400px] h-[64px] text-center p-0 fixed bottom-0">
+            <Button className="" danger type="primary">
+              重置
+            </Button>
+          </Footer>
+        </Sider>
+        <Layout className="w-full">
+          <Content className="lg:h-layout lg:w-layout overflow-y-auto overflow-x-auto bg-white pt-20">
+            <RenderViewCard />
+          </Content>
+          <Footer style={{ width: "calc(100% - 400px)" }} className="flex items-center justify-center bg-lime-500 h-[64px] p-0 text-center fixed bottom-0">
+            <Button type="primary">截图</Button>
+          </Footer>
+        </Layout>
+      </Layout>
+    </>
   );
 }

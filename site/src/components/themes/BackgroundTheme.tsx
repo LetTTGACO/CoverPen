@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import unsplash from "../../utils/unsplashConfig";
-import { ImgContext } from "@/utils/ImgContext";
 import Image from "next/image";
 
 const BackgroundTheme = ({ config }) => {

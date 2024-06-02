@@ -31,7 +31,7 @@ export interface FormValue {
 const useFormStore = create<FormValue>((set) => ({
   title: "Blog Title",
   author: "Cody",
-  theme: "base",
+  theme: "basic",
   icon: "react",
   customIcon: "",
   font: "font-sans",

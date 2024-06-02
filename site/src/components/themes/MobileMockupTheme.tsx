@@ -1,22 +1,32 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import Image from "next/image";
+import { FormValue } from "@/hooks/useFormStore";
 
-const MobileMockupTheme = ({ config }) => {
-  const { backgroundColor, platform, title, font } = config;
+const MobileMockupTheme: FC<{ config: FormValue }> = ({ config }) => {
+  const { width, aspectRatio, backgroundColor, title, font } = config;
 
   const [image, setImage] = useState();
+
+  const lines = useMemo(() => {
+    return title.split("\n").map((line, i) => (
+      <React.Fragment key={i}>
+        {line}
+        <br />
+      </React.Fragment>
+    ));
+  }, [title]);
 
   return (
     <div className="p-4 bg-white">
       <div
-        className={`overflow-y-hidden flex flex-row px-10 items-center justify-center rounded px-8 pt-4  ${platform}`}
-        style={{ backgroundColor: backgroundColor }}
+        className={`overflow-y-hidden flex flex-row items-center justify-center px-8 pt-4 mx-auto`}
+        style={{ backgroundColor, width: `${width}px`, aspectRatio }}
       >
-        <h1 className={`${font} text-2xl w-1/2 md:text-4xl px-4 text-white font-bold text-left`}>{title}</h1>
+        <h1 className={`${font} text-2xl w-1/2 md:text-4xl px-4 text-white font-bold text-left`}>{lines}</h1>
 
-        <div className="w-5/12 mx-auto m-4 mt-10 group mx-auto h-full  shadow-lg  flex flex-col  bg-white border-t-8 border-x-8 border-gray-800 rounded-t-3xl border-white">
+        <div className="w-5/12 m-4 mt-10 group mx-auto h-full  shadow-lg  flex flex-col  bg-white border-t-8 border-x-8 border-gray-800 rounded-t-3xl">
           <div className="bg-gray-800 h-8 w-full p-2 pb-3 flex items-center rounded-t">
             <div className="flex mx-auto items-center">
               <div className="bg-white h-3 w-3 rounded-full mx-1"></div>

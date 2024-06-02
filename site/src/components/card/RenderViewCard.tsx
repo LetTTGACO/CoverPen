@@ -1,6 +1,5 @@
 "use client";
 
-import { Card, CardBody } from "@nextui-org/react";
 import BasicTheme from "@/components/themes/BasicTheme";
 import ModernTheme from "@/components/themes/ModernTheme";
 import OutlineTheme from "@/components/themes/OutlineTheme";
