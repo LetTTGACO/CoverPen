@@ -1,7 +1,8 @@
 "use client";
 
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { List } from "antd";
+import useFormStore from "@/hooks/useFormStore";
 // theme1.webp
 // theme2.webp
 // theme3.webp
@@ -17,7 +18,7 @@ const data = [
   { label: "theme4", value: "preview" },
   { label: "theme3", value: "stylish" },
   { label: "theme6", value: "mobile" },
-  { label: "theme7", value: "background" },
+  // { label: "theme7", value: "background" },
 ];
 
 interface ThemeListProps {
@@ -26,13 +27,18 @@ interface ThemeListProps {
 }
 
 const ThemeList: FC<ThemeListProps> = ({ value: initValue, onChange }) => {
+  const formValue = useFormStore();
   const [value, setValue] = useState<string | undefined>(initValue);
+
+  useEffect(() => {
+    setValue(formValue.theme);
+  }, [formValue.theme]);
 
   const onSelect = (value: string) => {
     setValue(value);
     onChange?.(value);
   };
-  console.log('value', value)
+  console.log("value", value);
 
   return (
     <>

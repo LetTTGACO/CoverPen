@@ -14,6 +14,9 @@ const config: Config = {
       width: {
         layout: "calc(100vw - 400px)",
       },
+      minWidth: {
+        layout: "calc(100vw - 400px)",
+      },
       maxHeight: {
         layout: "calc(100vh - 64px)",
       },

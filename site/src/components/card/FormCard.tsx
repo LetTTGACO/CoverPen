@@ -1,12 +1,14 @@
 "use client";
 import useFormStore, { FormValue } from "@/hooks/useFormStore";
 import { useEffect, useState } from "react";
-import { Button, Col, Form, Input, Row, Select, Slider, Radio, Upload, List, Card } from "antd";
+import { Button, Col, Form, Input, Row, Select, Slider, Space, Upload, List, Card } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import WallpaperList from "@/components/card/WallpaperList";
 import ThemeList from "@/components/card/ThemeList";
+import SliderInput from "@/components/SliderInput";
 const FormItem = Form.Item;
 const TextArea = Input.TextArea;
+const SpaceCompact = Space;
 
 const devIconsUrl = "https://raw.githubusercontent.com/devicons/devicon/master/devicon.json";
 
@@ -40,6 +42,11 @@ export default function FormCard() {
   }, []);
   const setState = useFormStore.setState;
   const formValue = useFormStore();
+  const form = Form.useFormInstance();
+
+  useEffect(() => {
+    form?.setFieldsValue(formValue);
+  }, [formValue]);
 
   const onChange = (changedValues: any, allValues: FormValue) => {
     console.log("onchange", changedValues, allValues);
@@ -122,16 +129,18 @@ export default function FormCard() {
         </Row>
       </Form.Item>
 
-      <FormItem label={<Label>背景</Label>}>
+      <FormItem label={<Label>背景</Label>} name="background">
         <WallpaperList />
       </FormItem>
 
-      <FormItem label={<Label>圆角</Label>} name="borderRadius">
-        <Slider step={1} max={100} min={0} />
-      </FormItem>
+      {!["preview", "outline", "mobile"].includes(formValue.theme) && (
+        <FormItem label={<Label>圆角</Label>} name="borderRadius">
+          <SliderInput step={1} max={100} min={0} />
+        </FormItem>
+      )}
 
       <FormItem label={<Label>宽度</Label>} name="width">
-        <Slider step={1} max={1000} min={400} />
+        <SliderInput step={1} max={1000} min={400} />
       </FormItem>
       <FormItem label={<Label>字体</Label>} name="font">
         <Select showSearch options={fontOptions} placeholder="请选择字体" />

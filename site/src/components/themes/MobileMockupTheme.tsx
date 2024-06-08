@@ -1,30 +1,28 @@
 "use client";
 
 import React, { FC, useMemo, useState } from "react";
-import Image from "next/image";
 import { FormValue } from "@/hooks/useFormStore";
+import {InboxOutlined} from "@ant-design/icons";
+import { Upload } from "antd";
+const { Dragger } = Upload;
 
 const MobileMockupTheme: FC<{ config: FormValue }> = ({ config }) => {
-  const { width, aspectRatio, backgroundColor, title, font } = config;
+  const { width, aspectRatio, background, title, font } = config;
 
-  const [image, setImage] = useState();
+  const [image, setImage] = useState<string>();
 
-  const lines = useMemo(() => {
-    return title.split("\n").map((line, i) => (
-      <React.Fragment key={i}>
-        {line}
-        <br />
-      </React.Fragment>
-    ));
-  }, [title]);
+  const handleUpload = (info: any) => {
+    setImage(URL.createObjectURL(info.file.originFileObj));
+  };
+
 
   return (
-    <div className="p-4 bg-white">
+    <div className="bg-white">
       <div
         className={`overflow-y-hidden flex flex-row items-center justify-center px-8 pt-4 mx-auto`}
-        style={{ backgroundColor, width: `${width}px`, aspectRatio }}
+        style={{ background, width: `${width}px`, aspectRatio }}
       >
-        <h1 className={`${font} text-2xl w-1/2 md:text-4xl px-4 text-white font-bold text-left`}>{lines}</h1>
+        <h1 className={`${font} text-2xl w-1/2 md:text-4xl px-4 text-white font-bold text-left`}>{title}</h1>
 
         <div className="w-5/12 m-4 mt-10 group mx-auto h-full  shadow-lg  flex flex-col  bg-white border-t-8 border-x-8 border-gray-800 rounded-t-3xl">
           <div className="bg-gray-800 h-8 w-full p-2 pb-3 flex items-center rounded-t">
@@ -35,8 +33,8 @@ const MobileMockupTheme: FC<{ config: FormValue }> = ({ config }) => {
           </div>
 
           {image ? (
-            <div className="group relative">
-              <Image src={image && image} className="object-cover rounded -translate-y-1 h-full" alt="preview" />
+            <div className="relative h-full">
+              <img src={image && image} className="object-cover rounded -translate-y-1 h-full" alt="preview" />
               <button onClick={() => setImage("")} className="ml-auto mr-4 cursor-pointer">
                 <svg
                   className="group-hover:inline-block absolute top-4 right-2  bg-gray-500 hidden w-8 h-8 p-2 text-white rounded-full z-10"
@@ -50,13 +48,11 @@ const MobileMockupTheme: FC<{ config: FormValue }> = ({ config }) => {
               </button>
             </div>
           ) : (
-            <div className="flex flex-col px-4 rounded-xl py-20 bg-white items-center justify-center">
-              <input
-                type="file"
-                className="text-sm  flex flex-col cursor-pointer mb-2 bg-white rounded border"
-                onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
-              />
-              <span className=" text-center italic">click to upload a screenshot</span>
+            <div className="bg-white relative w-full h-full ">
+              <Dragger onChange={handleUpload} className="w-full h-full absolute top-0 left-0" showUploadList={false}>
+                <InboxOutlined style={{fontSize: 48}}/>
+                <div className="mt-2">点击或拖动图片</div>
+              </Dragger>
             </div>
           )}
         </div>

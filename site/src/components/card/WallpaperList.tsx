@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useMemo, useState } from "react";
+import React, {FC, useEffect, useMemo, useState} from "react";
 import { Button, ColorPicker, Input, type ColorPickerProps, List, Popover, Radio, theme, Upload } from "antd";
 import { generate, green, presetPalettes, red } from "@ant-design/colors";
 import { InboxOutlined, PlusOutlined, ToolFilled } from "@ant-design/icons";
@@ -13,7 +13,7 @@ type Presets = Required<ColorPickerProps>["presets"][number];
 
 const bgOptions = [
   { label: "墙纸", value: "wallpaper" },
-  { label: "渐变", value: "gradation" },
+  { label: "渐变", value: "color" },
   { label: "导入", value: "custom" },
 ];
 const data = [
@@ -109,23 +109,37 @@ const genPresets = (presets = presetPalettes) =>
 
 interface WallpaperListProps {
   value?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: { type: string; value: string }) => void;
 }
 
 const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) => {
-  const formValue = useFormStore()
+  const formValue = useFormStore();
   const [value, setValue] = useState<string | undefined>(initValue);
   const [type, setType] = useState("wallpaper");
 
+
+  useEffect(() => {
+    setValue(formValue.background.value);
+    setType(formValue.background.type);
+  }, [formValue.background]);
   const onSelect = (value: string) => {
     setValue(value);
-    onChange?.(value);
+    onChange?.({
+      type,
+      value,
+    });
   };
 
   const onTypeChange = (value: any) => {
     setType(value.target.value);
   };
-  const onUpload = () => {};
+  const onUpload = (info: any) => {
+    const image = URL.createObjectURL(info.file.originFileObj);
+    onChange?.({
+      type,
+      value: image,
+    });
+  };
 
   const listOptions = useMemo(() => {
     if (type === "wallpaper") {
@@ -159,10 +173,11 @@ const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) =
           </RadioButton>
         ))}
       </RadioGroup>
-      {type === "gradation" ? (
+      {type === "color" ? (
         <div className="mt-4 flex justify-between items-center space-x-4">
-          <ColorPicker presets={presets} className="flex-auto" defaultValue="#B5153B" showText />
-          <ColorPicker presets={presets} className="flex-auto" defaultValue="#EBC22F" showText />
+          <ColorPicker presets={presets} className="flex-auto" onChange={(value) => {
+            onSelect(value.toRgbString())
+          }}  showText />
           <Popover content={customBgContent} title="自定义样式代码" trigger="click">
             <Button className="flex-auto" type="primary" icon={<ToolFilled />}>
               代码
@@ -191,7 +206,7 @@ const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) =
                   className="rounded-md bg-cover bg-center bg-no-repeat min-h-[44px]"
                 />
               ) : null}
-              {type === "gradation" ? (
+              {type === "color" ? (
                 <div
                   className="rounded-md w-full h-full min-h-[44px] opacity-80 hover:opacity-100 cursor-pointer"
                   style={{
@@ -204,7 +219,7 @@ const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) =
         />
       ) : (
         <div className="mt-4">
-          <Dragger>
+          <Dragger onChange={onUpload} showUploadList={false}>
             <InboxOutlined style={{ fontSize: 48 }} />
             <div className="mt-2">点击或拖动图片</div>
           </Dragger>

@@ -11,7 +11,7 @@ export interface FormValue {
   /** 自定义图标 */
   customIcon?: string;
   /** 背景颜色 */
-  backgroundColor?: string;
+  background: { type: string; value: string };
   /** 圆角半径 */
   borderRadius: string;
   /** 水平内边距 */
@@ -28,20 +28,27 @@ export interface FormValue {
   aspectRatio?: string;
 }
 
-const useFormStore = create<FormValue>((set) => ({
+export const defaultValue = {
   title: "Blog Title",
   author: "Cody",
   theme: "basic",
   icon: "react",
   customIcon: "",
   font: "font-sans",
-  backgroundColor: "#949ee5",
+  background: {
+    type: "wallpaper",
+    value: "macos-big-sur",
+  },
   borderRadius: "10",
   paddingX: "10",
   paddingY: "10",
   width: "600",
   ratio: "1:1",
   aspectRatio: "16/9",
+}
+
+const useFormStore = create<FormValue>((set) => ({
+  ...defaultValue
 }));
 
 export default useFormStore;

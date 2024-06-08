@@ -1,30 +1,34 @@
 "use client";
 
-import React, { FC, useMemo } from "react";
+import React, { FC, useMemo, useState } from "react";
 import Image from "next/image";
 import { FormValue } from "@/hooks/useFormStore";
+import { InboxOutlined } from "@ant-design/icons";
+import { Upload } from "antd";
+const { Dragger } = Upload;
 
 const StylishTheme: FC<{ config: FormValue }> = ({ config }) => {
-  const { aspectRatio, width, title, author, font, icon, customIcon, backgroundColor } = config;
+  const { borderRadius, aspectRatio, width, title, author, font, icon, customIcon, background } = config;
 
-  const lines = useMemo(() => {
-    return title.split("\n").map((line, i) => (
-      <React.Fragment key={i}>
-        {line}
-        <br />
-      </React.Fragment>
-    ));
-  }, [title]);
+
+  const [image, setImage] = useState<string>();
+
+  const handleUpload = (info: any) => {
+    setImage(URL.createObjectURL(info.file.originFileObj));
+  };
   return (
-    <div className=" bg-white rounded">
+    <div className="bg-white">
       <div
-        className={` overflow-y-hidden flex flex-col rounded mx-auto `}
-        style={{ backgroundColor, width: `${width}px`, aspectRatio }}
+        className={` overflow-y-hidden flex flex-col mx-auto `}
+        style={{ background, width: `${width}px`, aspectRatio }}
       >
-        <div className="flex flex-row  items-center bg-white  justify-center m-4 ">
-          <div className="h-full w-1/2  bg-white rounded-l-xl">
-            <div className={`${font} px-12 justify-center text-left rounded-xl h-full p-4 flex flex-col`}>
-              <h1 className=" text-4xl font-bold text-gray-800">{lines}</h1>
+        <div
+          style={{ borderRadius }}
+          className="flex flex-row  items-center bg-white rounded justify-center m-4 h-full "
+        >
+          <div style={{ borderRadius }} className="h-full w-1/2  bg-white">
+            <div className={`${font} px-12 justify-center text-left h-full p-4 flex flex-col`}>
+              <h1 className=" text-4xl font-bold text-gray-800">{title}</h1>
               <div className="flex items-center mt-10 text-left">
                 {customIcon ? (
                   <div className=" ">
@@ -43,29 +47,40 @@ const StylishTheme: FC<{ config: FormValue }> = ({ config }) => {
               </div>
             </div>
           </div>
-          <div className="w-1/2">
-            <div className="relative flex group">
-              <div className="h-96 w-96 ">
-                {/*<Image*/}
-                {/*  src={unsplashImage.url && unsplashImage.url}*/}
-                {/*  className=" object-cover h-96 w-96  "*/}
-                {/*  alt="preview"*/}
-                {/*/>*/}
-                123123
+          <div style={{ borderRadius }} className="w-1/2 h-full">
+            {image ? (
+              <div style={{ borderRadius }} className="relative w-full h-full">
+                <img
+                  style={{ borderTopRightRadius: borderRadius, borderBottomRightRadius: borderRadius }}
+                  src={image}
+                  className="object-cover w-full h-full"
+                  alt="preview"
+                />
+                <button onClick={() => setImage("")} className="ml-auto mr-4 cursor-pointer">
+                  <svg
+                    className="group-hover:inline-block absolute top-4 right-4  bg-gray-500 hidden w-8 h-8 p-2 text-white rounded-full z-10"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </button>
               </div>
-
-              {/*<button onClick={() => setUnsplashImage("")} className="absolute  top-4 right-2 cursor-pointer">*/}
-              {/*  <svg*/}
-              {/*    className="group-hover:inline-block hidden w-6 h-6 text-gray-800 bg-white p-1 rounded-full z-10"*/}
-              {/*    fill="none"*/}
-              {/*    stroke="currentColor"*/}
-              {/*    viewBox="0 0 24 24"*/}
-              {/*    xmlns="http://www.w3.org/2000/svg"*/}
-              {/*  >*/}
-              {/*    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>*/}
-              {/*  </svg>*/}
-              {/*</button>*/}
-            </div>
+            ) : (
+              <div style={{ borderRadius }} className="p-20 py-28 bg-white relative  w-full h-full ">
+                <Dragger
+                  style={{ borderTopRightRadius: borderRadius, borderBottomRightRadius: borderRadius }}
+                  onChange={handleUpload}
+                  showUploadList={false}
+                  className="w-full h-full absolute top-0 left-0"
+                >
+                  <InboxOutlined style={{ fontSize: 48 }} />
+                  <div className="mt-2">点击或拖动图片</div>
+                </Dragger>
+              </div>
+            )}
           </div>
         </div>
       </div>
