@@ -19,7 +19,7 @@ const SliderInput: React.FC<SliderInputProps> = ({ value, onChange, ...rest }) =
     setInputValue(value || 0);
   }, [value]);
   return (
-    <Row>
+    <Row gutter={10}>
       <Col span={18}>
         <Slider
           {...rest}
@@ -28,7 +28,7 @@ const SliderInput: React.FC<SliderInputProps> = ({ value, onChange, ...rest }) =
         />
       </Col>
       <Col span={6}>
-        <InputNumber min={rest.min} max={rest.max} step={rest.step as number} className="mx-4" value={inputValue} onChange={handleChange} />
+        <InputNumber min={rest.min} max={rest.max} step={rest.step as number} value={inputValue} onChange={handleChange} />
       </Col>
     </Row>
   );
