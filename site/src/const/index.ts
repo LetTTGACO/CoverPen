@@ -6288,7 +6288,7 @@ export const iconOptions = [
       },
     ],
   },
-];
+].map((item) => ({ label: item.name, value: item.name }));
 
 export const fontOptions = [
   { label: "Serif", value: "font-serif" },
