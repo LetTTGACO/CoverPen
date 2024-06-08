@@ -1,10 +1,10 @@
 "use client";
 
-import React, { FC, useMemo } from "react";
+import React, { FC } from "react";
 import Image from "next/image";
-import type { FormValue } from "@/hooks/useFormStore";
-const OutlineTheme: FC<{ config: FormValue }> = ({ config }) => {
-  const { width, aspectRatio, title, background, author, icon, font, customIcon } = config;
+import { ThemeFormValue } from "@/types";
+const OutlineTheme: FC<ThemeFormValue> = (props) => {
+  const { width, aspectRatio, title, background, author, icon, font, customIcon } = props;
 
   return (
     <div className="bg-white ">

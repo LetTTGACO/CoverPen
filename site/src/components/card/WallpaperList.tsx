@@ -1,6 +1,6 @@
 "use client";
 
-import React, {FC, useEffect, useMemo, useState} from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { Button, ColorPicker, Input, type ColorPickerProps, List, Popover, Radio, theme, Upload } from "antd";
 import { generate, green, presetPalettes, red } from "@ant-design/colors";
 import { InboxOutlined, PlusOutlined, ToolFilled } from "@ant-design/icons";
@@ -117,7 +117,6 @@ const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) =
   const [value, setValue] = useState<string | undefined>(initValue);
   const [type, setType] = useState("wallpaper");
 
-
   useEffect(() => {
     setValue(formValue.background.value);
     setType(formValue.background.type);
@@ -175,9 +174,14 @@ const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) =
       </RadioGroup>
       {type === "color" ? (
         <div className="mt-4 flex justify-between items-center space-x-4">
-          <ColorPicker presets={presets} className="flex-auto" onChange={(value) => {
-            onSelect(value.toRgbString())
-          }}  showText />
+          <ColorPicker
+            presets={presets}
+            className="flex-auto"
+            onChange={(value) => {
+              onSelect(value.toRgbString());
+            }}
+            showText
+          />
           <Popover content={customBgContent} title="自定义样式代码" trigger="click">
             <Button className="flex-auto" type="primary" icon={<ToolFilled />}>
               代码

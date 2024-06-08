@@ -1,15 +1,14 @@
 "use client";
 
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useState } from "react";
 import Image from "next/image";
-import { FormValue } from "@/hooks/useFormStore";
 import { InboxOutlined } from "@ant-design/icons";
 import { Upload } from "antd";
+import { ThemeFormValue } from "@/types";
 const { Dragger } = Upload;
 
-const StylishTheme: FC<{ config: FormValue }> = ({ config }) => {
-  const { borderRadius, aspectRatio, width, title, author, font, icon, customIcon, background } = config;
-
+const StylishTheme: FC<ThemeFormValue> = (props) => {
+  const { borderRadius, aspectRatio, width, title, author, font, icon, customIcon, background } = props;
 
   const [image, setImage] = useState<string>();
 

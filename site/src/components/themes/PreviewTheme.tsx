@@ -1,17 +1,15 @@
 "use client";
 
-import React, { FC, useMemo, useState } from "react";
-import { FormValue } from "@/hooks/useFormStore";
-import { CloseCircleOutlined, InboxOutlined } from "@ant-design/icons";
+import React, { FC, useState } from "react";
+import { InboxOutlined } from "@ant-design/icons";
 import { Upload } from "antd";
+import { ThemeFormValue } from "@/types";
 const { Dragger } = Upload;
 
-const PreviewTheme: FC<{ config: FormValue }> = ({ config }) => {
-  const { aspectRatio, width, background, title, font } = config;
+const PreviewTheme: FC<ThemeFormValue> = (props) => {
+  const { aspectRatio, width, background, title, font } = props;
 
   const [image, setImage] = useState<string>();
-
-
 
   const handleUpload = (info: any) => {
     setImage(URL.createObjectURL(info.file.originFileObj));

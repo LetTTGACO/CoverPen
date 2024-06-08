@@ -1,14 +1,14 @@
 "use client";
-import useFormStore, { FormValue } from "@/hooks/useFormStore";
+import useFormStore from "@/hooks/useFormStore";
 import { useEffect, useState } from "react";
 import { Button, Col, Form, Input, Row, Select, Slider, Space, Upload, List, Card } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import WallpaperList from "@/components/card/WallpaperList";
 import ThemeList from "@/components/card/ThemeList";
 import SliderInput from "@/components/SliderInput";
+import { FormValue } from "@/types";
 const FormItem = Form.Item;
 const TextArea = Input.TextArea;
-const SpaceCompact = Space;
 
 const devIconsUrl = "https://raw.githubusercontent.com/devicons/devicon/master/devicon.json";
 
@@ -46,10 +46,9 @@ export default function FormCard() {
 
   useEffect(() => {
     form?.setFieldsValue(formValue);
-  }, [formValue]);
+  }, [form, formValue]);
 
   const onChange = (changedValues: any, allValues: FormValue) => {
-    console.log("onchange", changedValues, allValues);
     if (changedValues.customIcon?.file.status === "done") {
       //文件上传
       setState((state) => {

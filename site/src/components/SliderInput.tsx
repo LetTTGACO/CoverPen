@@ -21,14 +21,16 @@ const SliderInput: React.FC<SliderInputProps> = ({ value, onChange, ...rest }) =
   return (
     <Row gutter={10}>
       <Col span={18}>
-        <Slider
-          {...rest}
-          onChange={handleChange}
-          value={inputValue}
-        />
+        <Slider {...rest} onChange={handleChange} value={inputValue} />
       </Col>
       <Col span={6}>
-        <InputNumber min={rest.min} max={rest.max} step={rest.step as number} value={inputValue} onChange={handleChange} />
+        <InputNumber
+          min={rest.min}
+          max={rest.max}
+          step={rest.step as number}
+          value={inputValue}
+          onChange={handleChange}
+        />
       </Col>
     </Row>
   );

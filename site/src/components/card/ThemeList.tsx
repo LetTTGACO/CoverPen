@@ -3,13 +3,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { List } from "antd";
 import useFormStore from "@/hooks/useFormStore";
-// theme1.webp
-// theme2.webp
-// theme3.webp
-// theme4.webp
-// theme5.webp
-// theme6.webp
-// theme7.webp
 
 const data = [
   { label: "theme1", value: "basic" },

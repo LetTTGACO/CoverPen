@@ -1,20 +1,11 @@
 "use client";
 
-import React, { FC, useMemo } from "react";
+import React, { FC } from "react";
 import Image from "next/image";
-import type { FormValue } from "@/hooks/useFormStore";
+import { ThemeFormValue } from "@/types";
 
-// @ts-ignore
-interface Background extends FormValue {
-  background: string;
-}
-
-interface ThemeProps {
-  config: Background
-}
-
-const BasicTheme: FC<ThemeProps> = ({ config }) => {
-  const { title, background, borderRadius, author, icon, font, customIcon, aspectRatio, width } = config;
+const BasicTheme: FC<ThemeFormValue> = (props) => {
+  const { title, background, borderRadius, author, icon, font, customIcon, aspectRatio, width } = props;
 
   return (
     <div

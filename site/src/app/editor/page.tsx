@@ -1,7 +1,7 @@
 "use client";
 import RenderViewCard from "@/components/card/RenderViewCard";
 import FormCard from "@/components/card/FormCard";
-import {Button, Dropdown, Layout, notification, Space} from "antd";
+import { Button, Dropdown, Layout, notification, Space } from "antd";
 import React, { useRef, useState } from "react";
 import useFormStore, { defaultValue } from "@/hooks/useFormStore";
 import domtoimage from "dom-to-image";
@@ -83,11 +83,10 @@ export default function Editor() {
     const item = new ClipboardItem({ "image/png": data });
     await navigator.clipboard.write([item]);
     notification.open({
-      message: '复制成功',
-      description:
-        'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+      message: "复制成功",
+      description: "复制到剪贴板成功",
     });
-  }
+  };
 
   return (
     <>
@@ -115,9 +114,10 @@ export default function Editor() {
             style={{ width: "calc(100% - 400px)" }}
             className="bg-white h-[64px] p-0 text-center fixed bottom-0 border-t-[1px]"
           >
-
             <div className="flex items-center h-full float-right mr-4">
-              <Button type="primary" onClick={handleCopy}>复制</Button>
+              <Button type="primary" onClick={handleCopy}>
+                复制
+              </Button>
               <DropdownButton
                 type="primary"
                 className="float-right w-fit ml-4"
@@ -148,7 +148,6 @@ export default function Editor() {
                 下载
               </DropdownButton>
             </div>
-
           </Footer>
         </Layout>
       </Layout>

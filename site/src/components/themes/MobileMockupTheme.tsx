@@ -1,20 +1,19 @@
 "use client";
 
-import React, { FC, useMemo, useState } from "react";
-import { FormValue } from "@/hooks/useFormStore";
-import {InboxOutlined} from "@ant-design/icons";
+import React, { FC, useState } from "react";
+import { InboxOutlined } from "@ant-design/icons";
 import { Upload } from "antd";
+import { ThemeFormValue } from "@/types";
 const { Dragger } = Upload;
 
-const MobileMockupTheme: FC<{ config: FormValue }> = ({ config }) => {
-  const { width, aspectRatio, background, title, font } = config;
+const MobileMockupTheme: FC<ThemeFormValue> = (props) => {
+  const { width, aspectRatio, background, title, font } = props;
 
   const [image, setImage] = useState<string>();
 
   const handleUpload = (info: any) => {
     setImage(URL.createObjectURL(info.file.originFileObj));
   };
-
 
   return (
     <div className="bg-white">
@@ -50,7 +49,7 @@ const MobileMockupTheme: FC<{ config: FormValue }> = ({ config }) => {
           ) : (
             <div className="bg-white relative w-full h-full ">
               <Dragger onChange={handleUpload} className="w-full h-full absolute top-0 left-0" showUploadList={false}>
-                <InboxOutlined style={{fontSize: 48}}/>
+                <InboxOutlined style={{ fontSize: 48 }} />
                 <div className="mt-2">点击或拖动图片</div>
               </Dragger>
             </div>

@@ -6,7 +6,6 @@ import OutlineTheme from "@/components/themes/OutlineTheme";
 import PreviewTheme from "@/components/themes/PreviewTheme";
 import StylishTheme from "@/components/themes/StylishTheme";
 import MobileMockupTheme from "@/components/themes/MobileMockupTheme";
-// import BackgroundTheme from "@/components/themes/BackgroundTheme";
 import useFormStore from "@/hooks/useFormStore";
 import React, { useMemo } from "react";
 
@@ -36,25 +35,21 @@ function RenderViewCard() {
   const selectTheme = (theme: string) => {
     switch (theme) {
       case "basic":
-        return <BasicTheme config={{ ...formValue, background, title }} />;
+        return <BasicTheme {...formValue} title={title} background={background} />;
       case "modern":
-        return <ModernTheme config={{ ...formValue, background, title }} />;
+        return <ModernTheme {...formValue} title={title} background={background} />;
       case "outline":
-        return <OutlineTheme config={{ ...formValue, background, title }} />;
+        return <OutlineTheme {...formValue} title={title} background={background} />;
       case "preview":
-        return <PreviewTheme config={{ ...formValue, background, title }} />;
+        return <PreviewTheme {...formValue} title={title} background={background} />;
       case "stylish":
-        return <StylishTheme config={{ ...formValue, background, title }} />;
+        return <StylishTheme {...formValue} title={title} background={background} />;
       case "mobile":
-        return <MobileMockupTheme config={{ ...formValue, background, title }} />;
-      // case "background":
-      //   return <BackgroundTheme config={{ ...formValue, background }} />;
-
+        return <MobileMockupTheme {...formValue} title={title} background={background} />;
       default:
-        return <BasicTheme config={{ ...formValue, background }} />;
+        return <BasicTheme {...formValue} title={title} background={background} />;
     }
   };
-  // return <div className="md:w-full md:scale-100 scale-50">{selectTheme(formValue.theme)} </div>;
   return selectTheme(formValue.theme);
 }
 

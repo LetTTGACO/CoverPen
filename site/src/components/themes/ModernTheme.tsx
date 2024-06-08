@@ -1,19 +1,16 @@
 "use client";
 
-import React, { FC, useMemo } from "react";
+import React, { FC } from "react";
 import Image from "next/image";
-import type { FormValue } from "@/hooks/useFormStore";
+import { ThemeFormValue } from "@/types";
 
-const ModernTheme: FC<{ config: FormValue }> = ({ config }) => {
-  const { width, aspectRatio, title, borderRadius, background, author, icon, font, customIcon } = config;
+const ModernTheme: FC<ThemeFormValue> = (props) => {
+  const { width, aspectRatio, title, borderRadius, background, author, icon, font, customIcon } = props;
 
   return (
     <div className="m-auto bg-white " style={{ background, width: `${width}px` }}>
       <div className=" overflow-y-hidden w-full flex  items-center" style={{ aspectRatio }}>
-        <div
-          className={` m-auto h-full p-4 text-gray-800 flex  items-center`}
-          style={{ aspectRatio }}
-        >
+        <div className={` m-auto h-full p-4 text-gray-800 flex  items-center`} style={{ aspectRatio }}>
           {customIcon ? (
             <div className="mx-auto items-center justify-center flex">
               <Image src={customIcon} alt="img" className="w-28 h-28 rounded-full bg-white border-4 border-white" />
