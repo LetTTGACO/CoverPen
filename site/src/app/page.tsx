@@ -240,12 +240,7 @@ export default function Home() {
           >
             ⭐ Star on Github
           </a>
-          <a
-            href="https://1874.cool/cats"
-            target="_blank"
-            rel="noreferrer"
-            className="m-2 hover:font-semibold"
-          >
+          <a href="https://1874.cool/cats" target="_blank" rel="noreferrer" className="m-2 hover:font-semibold">
             🥤 Buy me a coffee
           </a>
         </div>
