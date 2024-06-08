@@ -7,12 +7,11 @@ import WallpaperList from "@/components/card/WallpaperList";
 import ThemeList from "@/components/card/ThemeList";
 import SliderInput from "@/components/SliderInput";
 import { FormValue } from "@/types";
-import {aspectRatio, fontOptions, iconOptions} from "@/const";
+import { aspectRatio, fontOptions, iconOptions } from "@/const";
 const FormItem = Form.Item;
 const TextArea = Input.TextArea;
 
 export default function FormCard() {
-
   const setState = useFormStore.setState;
   const formValue = useFormStore();
   const form = Form.useFormInstance();
