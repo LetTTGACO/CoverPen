@@ -3,16 +3,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { List } from "antd";
 import useFormStore from "@/hooks/useFormStore";
-
-const data = [
-  { label: "theme1", value: "basic" },
-  { label: "theme2", value: "modern" },
-  { label: "theme5", value: "outline" },
-  { label: "theme4", value: "preview" },
-  { label: "theme3", value: "stylish" },
-  { label: "theme6", value: "mobile" },
-  // { label: "theme7", value: "background" },
-];
+import { themeOptions } from "@/const";
 
 interface ThemeListProps {
   value?: string;
@@ -38,7 +29,7 @@ const ThemeList: FC<ThemeListProps> = ({ value: initValue, onChange }) => {
       <List
         grid={{ column: 3, md: 5, lg: 3 }}
         className="gap-1"
-        dataSource={data}
+        dataSource={themeOptions}
         renderItem={(item) => (
           <div
             style={{

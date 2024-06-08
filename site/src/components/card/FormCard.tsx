@@ -1,45 +1,18 @@
 "use client";
 import useFormStore from "@/hooks/useFormStore";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Button, Col, Form, Input, Row, Select, Slider, Space, Upload, List, Card } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import WallpaperList from "@/components/card/WallpaperList";
 import ThemeList from "@/components/card/ThemeList";
 import SliderInput from "@/components/SliderInput";
 import { FormValue } from "@/types";
+import {aspectRatio, fontOptions, iconOptions} from "@/const";
 const FormItem = Form.Item;
 const TextArea = Input.TextArea;
 
-const devIconsUrl = "https://raw.githubusercontent.com/devicons/devicon/master/devicon.json";
-
-const fontOptions = [
-  { label: "Serif", value: "font-serif" },
-  { label: "Sans", value: "font-sans" },
-  { label: "Mono", value: "font-mono" },
-  { label: "Inter", value: "font-Inter" },
-  { label: "Poppins", value: "font-Poppins" },
-  { label: "Anek", value: "font-Anek" },
-];
-
-const aspectRatio = [
-  { label: "16:9", desc: "16:9", value: "16/9" },
-  { label: "9:16", desc: "9:16", value: "9/16" },
-  { label: "1:1", desc: "1:1", value: "1/1" },
-  { label: "2:1", desc: "2:1", value: "2/1" },
-  { label: "4:5", desc: "4:5", value: "4/5" },
-  { label: "2.35:1", desc: "微信公众号—图文封面", value: "2.35/1" },
-];
-
 export default function FormCard() {
-  const [iconOptions, setIconOptions] = useState([]);
-  useEffect(() => {
-    fetch(devIconsUrl)
-      .then((r) => r.json())
-      .then((data) => {
-        data.push({ name: "custom" });
-        setIconOptions(data.map((item: any) => ({ label: item.name, value: item.name })));
-      });
-  }, []);
+
   const setState = useFormStore.setState;
   const formValue = useFormStore();
   const form = Form.useFormInstance();
@@ -49,6 +22,7 @@ export default function FormCard() {
   }, [form, formValue]);
 
   const onChange = (changedValues: any, allValues: FormValue) => {
+    console.log("onChange", changedValues, allValues);
     if (changedValues.customIcon?.file.status === "done") {
       //文件上传
       setState((state) => {

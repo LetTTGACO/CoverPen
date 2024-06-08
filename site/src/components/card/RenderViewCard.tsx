@@ -16,7 +16,7 @@ function RenderViewCard() {
     switch (formValue.background.type) {
       case "wallpaper":
         return `url('/images/wallpapers/${formValue.background.value}.jpg') center center / 100%`;
-      case "color":
+      case "custom":
         return `url(${formValue.background.value}) center center / 100%`;
       default:
         return formValue.background.value;
