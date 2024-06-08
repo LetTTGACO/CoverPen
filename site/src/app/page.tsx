@@ -210,14 +210,14 @@ export default function Home() {
         <div className="md:w-1/2 flex flex-col">
           <span className="text-lg">
             Made with 💛 by{" "}
-            <a href="https://twitter.com/WankhadeRutik" className="font-semibold" target="_blank" rel="noreferrer">
-              Rutik Wankhade
+            <a href="https://github.com/LetTTGACO" className="font-semibold" target="_blank" rel="noreferrer">
+              1874
             </a>
           </span>
           <span className="text-lg font-Nunito">
             checkout{" "}
             <a
-              href="https://rutikwankhade.dev"
+              href="https://1874.cool"
               target="_blank"
               rel="noreferrer"
               className="text-purple-400 hover:text-pink-400"
@@ -233,7 +233,7 @@ export default function Home() {
             📌 How to use
           </Link>
           <a
-            href="https://github.com/rutikwankhade/CoverView"
+            href="https://github.com/LetTTGACO/CoverView"
             target="_blank"
             rel="noreferrer"
             className="m-2 hover:font-semibold"
@@ -241,7 +241,7 @@ export default function Home() {
             ⭐ Star on Github
           </a>
           <a
-            href="https://www.buymeacoffee.com/rutikwankhade"
+            href="https://1874.cool/cats"
             target="_blank"
             rel="noreferrer"
             className="m-2 hover:font-semibold"
