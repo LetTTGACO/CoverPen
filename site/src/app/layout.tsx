@@ -30,6 +30,11 @@ export default function RootLayout({
               token: {
                 colorPrimary: "#f18446",
               },
+              components: {
+                Button: {
+                  lineWidth: 0,
+                },
+              },
             }}
           >
             {children}

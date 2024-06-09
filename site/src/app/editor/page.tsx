@@ -120,13 +120,13 @@ export default function Editor() {
               重置样式
             </Button>
           </div>
-          <div className="flex items-center h-full float-right mr-4">
+          <div className="flex items-center h-full float-right mr-4 justify-center">
             <Button type="primary" onClick={handleCopy}>
               复制
             </Button>
             <DropdownButton
               type="primary"
-              className="float-right w-fit ml-4"
+              className="float-right ml-4"
               menu={{
                 items: dropdownItems,
                 onClick: (e) => handleDownload(e.key.split(",")[0], Number(e.key.split(",")[1])),
