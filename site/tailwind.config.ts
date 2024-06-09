@@ -7,6 +7,17 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      sm: "576px",
+
+      md: "768px",
+
+      lg: "992px",
+
+      xl: "1200px",
+
+      "2xl": "1600px",
+    },
     extend: {
       height: {
         layout: "calc(100vh - 64px)",

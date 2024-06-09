@@ -13,10 +13,6 @@ export interface BaseFormValue {
   /** 背景颜色 */
   /** 圆角半径 */
   borderRadius: string;
-  /** 水平内边距 */
-  paddingX?: string;
-  /** 垂直内边距 */
-  paddingY?: string;
   /** 字体 */
   font?: string;
   /** 宽度 */

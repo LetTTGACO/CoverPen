@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { FormValue } from "../types";
+import { FormValue } from "@/types";
 
 export const defaultValue = {
   title: "Blog Title",
@@ -9,12 +9,10 @@ export const defaultValue = {
   customIcon: "",
   font: "font-sans",
   background: {
-    type: "wallpaper",
-    value: "macos-big-sur",
+    type: "color",
+    value: "linear-gradient(135deg, rgb(181, 21, 59) 0%, rgb(235, 194, 47) 100%)",
   },
   borderRadius: "10",
-  paddingX: "10",
-  paddingY: "10",
   width: "600",
   ratio: "1:1",
   aspectRatio: "16/9",

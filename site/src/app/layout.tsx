@@ -25,7 +25,15 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <AntdRegistry>
-          <ConfigProvider>{children}</ConfigProvider>
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: "#f18446",
+              },
+            }}
+          >
+            {children}
+          </ConfigProvider>
         </AntdRegistry>
       </body>
     </html>

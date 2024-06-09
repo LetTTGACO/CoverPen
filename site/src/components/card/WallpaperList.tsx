@@ -107,7 +107,7 @@ const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) =
             <div
               style={{
                 opacity: value === item.value ? 1 : undefined,
-                border: value === item.value ? "2px solid #1890ff" : undefined,
+                border: value === item.value ? "2px solid #f18446" : undefined,
               }}
               className="p-1 rounded-md border-2 border-transparent box-border opacity-65 hover:opacity-100 cursor-pointer"
               onClick={() => onSelect(item.value)}

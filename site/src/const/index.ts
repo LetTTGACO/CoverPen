@@ -2009,7 +2009,26 @@ export const wallpaperList = [
 ];
 
 export const bgOptions = [
-  { label: "墙纸", value: "wallpaper" },
   { label: "渐变", value: "color" },
+  { label: "墙纸", value: "wallpaper" },
   { label: "导入", value: "custom" },
+];
+
+export const dropdownItems = [
+  {
+    key: "png,1",
+    label: "PNG x1 (默认)",
+  },
+  {
+    key: "png,2",
+    label: "PNG x2",
+  },
+  {
+    key: "jpeg,1",
+    label: "JPEG x1",
+  },
+  {
+    key: "jpeg,2",
+    label: "JPEG x2",
+  },
 ];

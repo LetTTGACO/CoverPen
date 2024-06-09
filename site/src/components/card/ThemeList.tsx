@@ -33,7 +33,7 @@ const ThemeList: FC<ThemeListProps> = ({ value: initValue, onChange }) => {
         renderItem={(item) => (
           <div
             style={{
-              border: value === item.value ? "2px solid #1890ff" : undefined,
+              border: value === item.value ? "2px solid #f18446" : undefined,
             }}
             className="p-1 rounded-md border-2 border-transparent box-border cursor-pointer"
             onClick={() => onSelect(item.value)}

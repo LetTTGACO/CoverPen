@@ -5,6 +5,7 @@ import { Button, Dropdown, Layout, notification, Space } from "antd";
 import React, { useState } from "react";
 import useFormStore, { defaultValue } from "@/hooks/useFormStore";
 import domtoimage from "dom-to-image";
+import { dropdownItems } from "@/const";
 const DropdownButton = Dropdown.Button;
 const { Footer, Sider, Content } = Layout;
 
@@ -98,58 +99,38 @@ export default function Editor() {
           className="lg:h-layout bg-white lg:border-r overflow-y-auto"
         >
           <FormCard />
-          <Footer className="z-10 flex items-center justify-center border-t-[1px] border-r-[1px] bg-white w-[400px] h-[64px] text-center p-0 fixed bottom-0">
-            <Button danger type="primary" onClick={handleReset}>
-              重置样式
-            </Button>
-          </Footer>
         </Sider>
-        <Layout className="w-full">
-          <Content className="lg:h-layout lg:w-layout min-w-layout overflow-y-auto overflow-x-auto bg-white py-20 flex items-center justify-center">
-            <div ref={componentRef} className="w-fit">
+        <Layout className="w-full bg-white overflow-x-auto ">
+          <Content className="min-w-fit lg:h-layout lg:w-layout py-20 flex items-center justify-center">
+            <div ref={componentRef} className="min-w-fit">
               <RenderViewCard />
             </div>
           </Content>
-          <Footer
-            style={{ width: "calc(100% - 400px)" }}
-            className="bg-white h-[64px] p-0 text-center fixed bottom-0 border-t-[1px]"
-          >
-            <div className="flex items-center h-full float-right mr-4">
-              <Button type="primary" onClick={handleCopy}>
-                复制
-              </Button>
-              <DropdownButton
-                type="primary"
-                className="float-right w-fit ml-4"
-                menu={{
-                  items: [
-                    {
-                      key: "png,1",
-                      label: "PNG x1",
-                    },
-                    {
-                      key: "png,2",
-                      label: "PNG x2",
-                    },
-                    {
-                      key: "jpeg,1",
-                      label: "JPEG x1",
-                    },
-                    {
-                      key: "jpeg,2",
-                      label: "JPEG x2",
-                    },
-                  ],
-                  onClick: (e) => handleDownload(e.key.split(",")[0], Number(e.key.split(",")[1])),
-                }}
-                onClick={() => handleDownload("png", 1)}
-                loading={loading}
-              >
-                下载
-              </DropdownButton>
-            </div>
-          </Footer>
         </Layout>
+        <Footer className="flex items-center justify-between bg-white h-[64px] w-full p-0 text-center fixed bottom-0 border-t-[1px] z-10">
+          <div className="lg:w-[400px] lg:ml-0 ml-4">
+            <Button type="primary" onClick={handleReset}>
+              重置样式
+            </Button>
+          </div>
+          <div className="flex items-center h-full float-right mr-4">
+            <Button type="primary" onClick={handleCopy}>
+              复制
+            </Button>
+            <DropdownButton
+              type="primary"
+              className="float-right w-fit ml-4"
+              menu={{
+                items: dropdownItems,
+                onClick: (e) => handleDownload(e.key.split(",")[0], Number(e.key.split(",")[1])),
+              }}
+              onClick={() => handleDownload("png", 1)}
+              loading={loading}
+            >
+              下载
+            </DropdownButton>
+          </div>
+        </Footer>
       </Layout>
     </>
   );
