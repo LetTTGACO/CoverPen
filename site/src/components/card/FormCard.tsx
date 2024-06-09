@@ -70,37 +70,40 @@ const FormCard = forwardRef(function FormCard(props, ref) {
       <FormItem label={<Label>标题</Label>} name="title">
         <TextArea rows={1} placeholder="请输入标题" autoSize />
       </FormItem>
-
-      <FormItem label={<Label>作者</Label>} name="author">
-        <Input name="author" placeholder="请填写作者" />
-      </FormItem>
-      <Form.Item label={<Label>图标</Label>}>
-        <Row gutter={24}>
-          <Col span={16}>
-            <FormItem noStyle label={<Label>图标</Label>} name="icon">
-              <Select
-                showSearch
-                options={iconOptions}
-                optionRender={(option) => (
-                  <div className="flex">
-                    <span className="mr-2">{option.data.value}</span>
-                    <div className="ml-auto mr-2">
-                      <i className={`devicon-${option.data.value}-plain dev-icon text-2xl`}></i>
+      {!["preview", "mobile"].includes(formValue.theme) && (
+        <FormItem label={<Label>作者</Label>} name="author">
+          <Input name="author" placeholder="请填写作者" />
+        </FormItem>
+      )}
+      {!["preview", "mobile"].includes(formValue.theme) && (
+        <Form.Item label={<Label>图标</Label>}>
+          <Row gutter={24}>
+            <Col span={16}>
+              <FormItem noStyle label={<Label>图标</Label>} name="icon">
+                <Select
+                  showSearch
+                  options={iconOptions}
+                  optionRender={(option) => (
+                    <div className="flex">
+                      <span className="mr-2">{option.data.value}</span>
+                      <div className="ml-auto mr-2">
+                        <i className={`devicon-${option.data.value}-plain dev-icon text-2xl`}></i>
+                      </div>
                     </div>
-                  </div>
-                )}
-              />
-            </FormItem>
-          </Col>
-          <Col span={8}>
-            <FormItem noStyle name="customIcon">
-              <Upload showUploadList={false}>
-                <Button icon={<UploadOutlined />}>自定义</Button>
-              </Upload>
-            </FormItem>
-          </Col>
-        </Row>
-      </Form.Item>
+                  )}
+                />
+              </FormItem>
+            </Col>
+            <Col span={8}>
+              <FormItem noStyle name="customIcon">
+                <Upload showUploadList={false}>
+                  <Button icon={<UploadOutlined />}>自定义</Button>
+                </Upload>
+              </FormItem>
+            </Col>
+          </Row>
+        </Form.Item>
+      )}
 
       <FormItem label={<Label>背景</Label>} name="background">
         <WallpaperList />

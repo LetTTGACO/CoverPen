@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import type { InputNumberProps, SliderSingleProps } from "antd";
-import { Col, InputNumber, Row, Slider, Space } from "antd";
+import { Col, InputNumber, Row, Slider } from "antd";
 
 interface SliderInputProps extends SliderSingleProps {
   value?: number;
@@ -8,14 +8,13 @@ interface SliderInputProps extends SliderSingleProps {
 }
 
 const SliderInput: React.FC<SliderInputProps> = ({ value, onChange, ...rest }) => {
-  const [inputValue, setInputValue] = useState<number>(value || 0);
+  const [inputValue, setInputValue] = useState<number>(Number(value) || 0);
 
   const handleChange: InputNumberProps["onChange"] = (newValue) => {
     setInputValue(newValue as number);
     onChange?.(newValue as number);
   };
   useEffect(() => {
-    console.log("SliderInput-value", value);
     setInputValue(Number(value) || 0);
   }, [value]);
   return (
