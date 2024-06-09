@@ -54,9 +54,9 @@ importers:
         specifier: ^5.4.2
         version: 5.4.5
 
-  packages/node-cover-view: {}
+  packages/node-cover-pen: {}
 
-  packages/react-cover-view:
+  packages/react-cover-pen:
     devDependencies:
       react:
         specifier: ^18.3.1

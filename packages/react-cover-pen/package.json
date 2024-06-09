@@ -1,7 +1,7 @@
 {
-  "name": "node-cover-view",
+  "name": "react-cover-pen",
   "version": "0.0.0",
-  "description": "CoverView for NodeJs",
+  "description": "CoverPen for React",
   "keywords": [
     "cover",
     "blog"
@@ -14,11 +14,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CoverView.git"
+    "url": "git+https://github.com/CoverPen.git"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsup"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }

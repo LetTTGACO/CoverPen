@@ -1,4 +1,4 @@
 packages:
-  - 'packages/node-cover-view'
-  - 'packages/react-cover-view'
+  - 'packages/node-cover-pen'
+  - 'packages/react-cover-pen'
   - 'site'

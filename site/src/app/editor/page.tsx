@@ -56,8 +56,8 @@ export default function Editor() {
 
     const a = document.createElement("A") as HTMLAnchorElement;
     a.href = data;
-    // 文件名 CoverView + 时间年月日
-    const filename = `coverview-${new Date().toISOString().slice(0, 10)}`;
+    // 文件名 CoverPen + 时间年月日
+    const filename = `coverpen-${new Date().toISOString().slice(0, 10)}-x${size}`;
     a.download = `${filename}.${imgType}`;
     document.body.appendChild(a);
     setLoading(false);

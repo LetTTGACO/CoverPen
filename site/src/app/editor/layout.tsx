@@ -22,12 +22,12 @@ export default function EditorLayout({
               <Link href="/">
                 <Image src={Logo} alt="logo" className="h-12 w-12 mr-4 rounded-xl"></Image>
               </Link>
-              <h1 className="text-2xl">Cover View</h1>
+              <h1 className="text-2xl">Cover Pen</h1>
             </div>
 
             <div className="flex">
               {/*<Link href="/" type="text">帮助</Link>*/}
-              <Button type="text" href="https://github.com/LetTTGACO/CoverView" target="_blank">
+              <Button type="text" href="https://github.com/LetTTGACO/CoverPen" target="_blank">
                 <GithubOutlined style={{ fontSize: 20 }} />
               </Button>
             </div>

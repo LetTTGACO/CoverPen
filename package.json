@@ -1,8 +1,8 @@
 {
-  "name": "cover-view",
+  "name": "cover-pen",
   "version": "1.0.0",
   "description": "Create awesome cover images for your blog posts quickly.",
-  "homepage": "https://github.com/CoverView",
+  "homepage": "https://github.com/CoverPen",
   "author": "1874 <me@mail.1874.cool>",
   "main": "index.js",
   "license": "MIT",

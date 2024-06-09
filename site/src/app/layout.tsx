@@ -9,7 +9,7 @@ import { ConfigProvider } from "antd";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Cover View",
+  title: "Cover Pen",
   description: "Creating cover images for blogs",
 };
 

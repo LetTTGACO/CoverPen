@@ -19,11 +19,11 @@ export default function Home() {
       <div className="text-xl  flex border-b border-gray-100  p-2 md:w-10/12 mx-auto">
         <div className="flex items-center">
           <Image src={logo} alt="logo" className="w-8 h-8 mx-2 rounded-xl" />
-          <h1 className="font-semibold md:text-xl text-lg font-Inter">Cover View</h1>
+          <h1 className="font-semibold md:text-xl text-lg font-Inter">Cover Pen</h1>
         </div>
 
         <a
-          href="https://github.com/LetTTGACO/CoverView"
+          href="https://github.com/LetTTGACO/CoverPen"
           target="_blank"
           rel="noreferrer"
           className="hover:translate-x-2 duration-300 bg-gray-700 group rounded-xl md:px-4 text-white md:text-sm text-xs ml-auto mr-4 font-Inter font-semibold p-2"
@@ -122,7 +122,7 @@ export default function Home() {
         </div>
 
         <h2 className="md:text-5xl text-3xl md:w-1/2 mx-auto mt-32 font-bold font-Anek text-center text-gray-700">
-          With coverview, you can create cover images in <span className="text-indigo-400">seconds</span>.
+          With coverpen, you can create cover images in <span className="text-indigo-400">seconds</span>.
         </h2>
         <div className="md:w-8/12 my-20 flex md:flex-row flex-col mx-auto">
           <div className="md:w-1/3 flex flex-col mx-10">
@@ -233,7 +233,7 @@ export default function Home() {
             📌 How to use
           </Link>
           <a
-            href="https://github.com/LetTTGACO/CoverView"
+            href="https://github.com/LetTTGACO/CoverPen"
             target="_blank"
             rel="noreferrer"
             className="m-2 hover:font-semibold"
