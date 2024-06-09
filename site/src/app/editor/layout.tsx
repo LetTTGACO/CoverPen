@@ -26,7 +26,6 @@ export default function EditorLayout({
             </div>
 
             <div className="flex">
-              {/*<Link href="/" type="text">帮助</Link>*/}
               <Button type="text" href="https://github.com/LetTTGACO/CoverPen" target="_blank">
                 <GithubOutlined style={{ fontSize: 20 }} />
               </Button>

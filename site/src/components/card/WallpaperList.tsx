@@ -5,7 +5,6 @@ import { Button, ColorPicker, Input, type ColorPickerProps, List, Popover, Radio
 import { generate, green, presetPalettes, red } from "@ant-design/colors";
 import { InboxOutlined, PlusOutlined, ToolFilled } from "@ant-design/icons";
 import Link from "next/link";
-import useFormStore from "@/hooks/useFormStore";
 import { bgOptions, gradationData, wallpaperList } from "@/const";
 const { Group: RadioGroup, Button: RadioButton } = Radio;
 const { Dragger } = Upload;
@@ -16,19 +15,20 @@ const genPresets = (presets = presetPalettes) =>
   Object.entries(presets).map<Presets>(([label, colors]) => ({ label, colors }));
 
 interface WallpaperListProps {
-  value?: string;
+  value?: { type: string; value: string };
   onChange?: (value: { type: string; value: string }) => void;
 }
 
 const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) => {
-  const formValue = useFormStore();
-  const [value, setValue] = useState<string | undefined>(initValue);
-  const [type, setType] = useState("wallpaper");
+  const [value, setValue] = useState<string | undefined>(initValue?.value);
+  const [type, setType] = useState(initValue?.type || "color");
 
   useEffect(() => {
-    setValue(formValue.background.value);
-    setType(formValue.background.type);
-  }, [formValue.background]);
+    if (initValue) {
+      setValue(initValue.value);
+      setType(initValue.type);
+    }
+  }, [initValue]);
   const onSelect = (value: string) => {
     setValue(value);
     onChange?.({

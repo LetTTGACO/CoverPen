@@ -1,6 +1,6 @@
 "use client";
 import useFormStore from "@/hooks/useFormStore";
-import { useEffect } from "react";
+import { useImperativeHandle, forwardRef } from "react";
 import { Button, Col, Form, Input, Row, Select, Slider, Space, Upload, List, Card } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import WallpaperList from "@/components/card/WallpaperList";
@@ -11,17 +11,20 @@ import { aspectRatio, fontOptions, iconOptions } from "@/const";
 const FormItem = Form.Item;
 const TextArea = Input.TextArea;
 
-export default function FormCard() {
+const FormCard = forwardRef(function FormCard(props, ref) {
   const setState = useFormStore.setState;
   const formValue = useFormStore();
-  const form = Form.useFormInstance();
+  const [form] = Form.useForm();
 
-  useEffect(() => {
-    form?.setFieldsValue(formValue);
-  }, [form, formValue]);
+  useImperativeHandle(ref, () => {
+    return {
+      setValue: (value: FormValue) => {
+        form?.setFieldsValue(value);
+      },
+    };
+  });
 
   const onChange = (changedValues: any, allValues: FormValue) => {
-    console.log("onChange", changedValues, allValues);
     if (changedValues.customIcon?.file.status === "done") {
       //文件上传
       setState((state) => {
@@ -45,7 +48,7 @@ export default function FormCard() {
   const Label = ({ children }: any) => <span className="text-lg text-gray-500">{children}</span>;
 
   return (
-    <Form layout="vertical" initialValues={formValue} onValuesChange={onChange} className="p-5 pb-16">
+    <Form form={form} layout="vertical" initialValues={formValue} onValuesChange={onChange} className="p-5 pb-16">
       <FormItem label={<Label>主题</Label>} name="theme">
         <ThemeList />
       </FormItem>
@@ -65,7 +68,6 @@ export default function FormCard() {
       </FormItem>
 
       <FormItem label={<Label>标题</Label>} name="title">
-        {/*<Input name="title" placeholder="请输入标题" />*/}
         <TextArea rows={1} placeholder="请输入标题" autoSize />
       </FormItem>
 
@@ -96,7 +98,6 @@ export default function FormCard() {
                 <Button icon={<UploadOutlined />}>自定义</Button>
               </Upload>
             </FormItem>
-            {/*<Button>Get captcha</Button>*/}
           </Col>
         </Row>
       </Form.Item>
@@ -119,4 +120,6 @@ export default function FormCard() {
       </FormItem>
     </Form>
   );
-}
+});
+
+export default FormCard;

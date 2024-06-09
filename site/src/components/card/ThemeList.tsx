@@ -2,7 +2,6 @@
 
 import React, { FC, useEffect, useState } from "react";
 import { List } from "antd";
-import useFormStore from "@/hooks/useFormStore";
 import { themeOptions } from "@/const";
 
 interface ThemeListProps {
@@ -11,18 +10,16 @@ interface ThemeListProps {
 }
 
 const ThemeList: FC<ThemeListProps> = ({ value: initValue, onChange }) => {
-  const formValue = useFormStore();
   const [value, setValue] = useState<string | undefined>(initValue);
 
   useEffect(() => {
-    setValue(formValue.theme);
-  }, [formValue.theme]);
+    setValue(initValue);
+  }, [initValue]);
 
   const onSelect = (value: string) => {
     setValue(value);
     onChange?.(value);
   };
-  console.log("value", value);
 
   return (
     <>

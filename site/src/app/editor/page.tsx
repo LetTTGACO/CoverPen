@@ -2,7 +2,7 @@
 import RenderViewCard from "@/components/card/RenderViewCard";
 import FormCard from "@/components/card/FormCard";
 import { Button, Dropdown, Layout, notification, Space } from "antd";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import useFormStore, { defaultValue } from "@/hooks/useFormStore";
 import domtoimage from "dom-to-image";
 import { dropdownItems } from "@/const";
@@ -13,22 +13,29 @@ export default function Editor() {
   const { setState } = useFormStore;
   const [loading, setLoading] = useState<boolean>(false);
   const componentRef = React.createRef<HTMLDivElement>();
+
+  const formRef = useRef(null);
+
   const handleReset = () => {
+    const resetValue = {
+      theme: defaultValue.theme,
+      aspectRatio: defaultValue.aspectRatio,
+      background: defaultValue.background,
+      borderRadius: defaultValue.borderRadius,
+      width: defaultValue.width,
+      font: defaultValue.font,
+    };
+    // @ts-ignore
+    formRef.current?.setValue(resetValue);
     setState((pre) => {
       return {
         ...pre,
-        theme: defaultValue.theme,
-        aspectRatio: defaultValue.aspectRatio,
-        background: defaultValue.background,
-        borderRadius: defaultValue.borderRadius,
-        width: defaultValue.width,
-        font: defaultValue.font,
+        ...resetValue,
       };
     });
   };
 
   const handleDownload = async (imgType: string, size: number) => {
-    console.log("download", imgType, size);
     setLoading(true);
     const element = componentRef.current;
     if (!element) {
@@ -98,7 +105,7 @@ export default function Editor() {
           collapsedWidth="100%"
           className="lg:h-layout bg-white lg:border-r overflow-y-auto"
         >
-          <FormCard />
+          <FormCard ref={formRef} />
         </Sider>
         <Layout className="w-full bg-white overflow-x-auto ">
           <Content className="min-w-fit lg:h-layout lg:w-layout py-20 flex items-center justify-center">

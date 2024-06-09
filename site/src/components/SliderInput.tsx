@@ -14,9 +14,9 @@ const SliderInput: React.FC<SliderInputProps> = ({ value, onChange, ...rest }) =
     setInputValue(newValue as number);
     onChange?.(newValue as number);
   };
-
   useEffect(() => {
-    setInputValue(value || 0);
+    console.log("SliderInput-value", value);
+    setInputValue(Number(value) || 0);
   }, [value]);
   return (
     <Row gutter={10}>
