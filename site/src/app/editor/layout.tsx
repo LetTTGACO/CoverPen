@@ -20,7 +20,7 @@ export default function EditorLayout({
           <div className="leading-16 h-16 flex justify-between items-center">
             <div className="flex justify-center items-center">
               <Link href="/">
-                <Image src={Logo} alt="logo" className="h-12 w-12 mr-4"></Image>
+                <Image src={Logo} alt="logo" className="h-12 w-12 mr-4 rounded-xl"></Image>
               </Link>
               <h1 className="text-2xl">Cover View</h1>
             </div>

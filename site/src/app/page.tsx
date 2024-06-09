@@ -18,7 +18,7 @@ export default function Home() {
     <div className="bg-gray-50">
       <div className="text-xl  flex border-b border-gray-100  p-2 md:w-10/12 mx-auto">
         <div className="flex items-center">
-          <Image src={logo} alt="logo" className="w-8 h-8 mx-2" />
+          <Image src={logo} alt="logo" className="w-8 h-8 mx-2 rounded-xl" />
           <h1 className="font-semibold md:text-xl text-lg font-Inter">Cover View</h1>
         </div>
 
