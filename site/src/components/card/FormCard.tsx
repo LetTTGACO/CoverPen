@@ -1,7 +1,7 @@
 "use client";
 import useFormStore from "@/hooks/useFormStore";
 import { useImperativeHandle, forwardRef } from "react";
-import { Button, Col, Form, Input, Row, Select, Slider, Space, Upload, List, Card } from "antd";
+import { Button, Col, Form, Input, Select, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import WallpaperList from "@/components/card/WallpaperList";
 import ThemeList from "@/components/card/ThemeList";
@@ -77,50 +77,47 @@ const FormCard = forwardRef(function FormCard(props, ref) {
       )}
       {!["preview", "mobile"].includes(formValue.theme) && (
         <Form.Item label={<Label>图标</Label>}>
-          <Row gutter={24}>
-            <Col span={16}>
-              <FormItem noStyle label={<Label>图标</Label>} name="icon">
-                <Select
-                  showSearch
-                  options={iconOptions}
-                  optionRender={(option) => (
-                    <div className="flex">
-                      <span className="mr-2">{option.data.value}</span>
-                      <div className="ml-auto mr-2">
-                        <i className={`devicon-${option.data.value}-plain dev-icon text-2xl`}></i>
-                      </div>
+          <div className="flex items-center justify-between">
+            <FormItem noStyle label={<Label>图标</Label>} name="icon">
+              <Select
+                showSearch
+                className="mr-4"
+                options={iconOptions}
+                optionRender={(option) => (
+                  <div className="flex">
+                    <span className="mr-2">{option.data.value}</span>
+                    <div className="ml-auto mr-2">
+                      <i className={`devicon-${option.data.value}-plain dev-icon text-2xl`}></i>
                     </div>
-                  )}
-                />
-              </FormItem>
-            </Col>
-            <Col span={8}>
-              <FormItem noStyle name="customIcon">
-                <Upload showUploadList={false}>
-                  <Button icon={<UploadOutlined />}>自定义</Button>
-                </Upload>
-              </FormItem>
-            </Col>
-          </Row>
+                  </div>
+                )}
+              />
+            </FormItem>
+
+            <FormItem noStyle name="customIcon">
+              <Upload showUploadList={false}>
+                <Button icon={<UploadOutlined />}>自定义</Button>
+              </Upload>
+            </FormItem>
+          </div>
         </Form.Item>
-      )}
-
-      <FormItem label={<Label>背景</Label>} name="background">
-        <WallpaperList />
-      </FormItem>
-
-      {!["preview", "outline", "mobile"].includes(formValue.theme) && (
-        <FormItem label={<Label>圆角</Label>} name="borderRadius">
-          <SliderInput step={1} max={100} min={0} />
-        </FormItem>
       )}
 
       <FormItem label={<Label>宽度</Label>} name="width">
         <SliderInput step={1} max={1000} min={400} />
       </FormItem>
-      <FormItem label={<Label>字体</Label>} name="font">
-        <Select showSearch options={fontOptions} placeholder="请选择字体" />
+      {!["preview", "outline", "mobile"].includes(formValue.theme) && (
+        <FormItem label={<Label>圆角</Label>} name="borderRadius">
+          <SliderInput step={1} max={100} min={0} />
+        </FormItem>
+      )}
+      <FormItem label={<Label>背景</Label>} name="background">
+        <WallpaperList />
       </FormItem>
+      {/*TODO Font 字体支持*/}
+      {/*<FormItem label={<Label>字体</Label>} name="font">*/}
+      {/*  <Select showSearch options={fontOptions} placeholder="请选择字体" />*/}
+      {/*</FormItem>*/}
     </Form>
   );
 });

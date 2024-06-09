@@ -21,7 +21,7 @@ interface WallpaperListProps {
 
 const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) => {
   const [value, setValue] = useState<string | undefined>(initValue?.value);
-  const [type, setType] = useState(initValue?.type || "color");
+  const [type, setType] = useState<string>(initValue?.type || "color");
 
   useEffect(() => {
     if (initValue) {
@@ -73,70 +73,72 @@ const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) =
 
   return (
     <>
-      <RadioGroup optionType="button" value={type} onChange={onTypeChange} className="flex text-center">
-        {bgOptions.map((item) => (
-          <RadioButton className="w-full" key={item.value} value={item.value}>
-            {item.label}
-          </RadioButton>
-        ))}
-      </RadioGroup>
-      {type === "color" ? (
-        <div className="mt-4 flex justify-between items-center space-x-4">
-          <ColorPicker
-            presets={presets}
-            className="flex-auto"
-            onChange={(value) => {
-              onSelect(value.toRgbString());
-            }}
-            showText
-          />
-          <Popover content={customBgContent} title="自定义样式代码" trigger="click">
-            <Button className="flex-auto" type="primary" icon={<ToolFilled />}>
-              代码
-            </Button>
-          </Popover>
-        </div>
-      ) : null}
-
-      {type !== "custom" ? (
-        <List
-          grid={{ column: 5 }}
-          className="mt-4 gap-1"
-          dataSource={listOptions}
-          renderItem={(item) => (
-            <div
-              style={{
-                opacity: value === item.value ? 1 : undefined,
-                border: value === item.value ? "2px solid #f18446" : undefined,
+      <div>
+        <RadioGroup optionType="button" value={type} onChange={onTypeChange} className="flex text-center">
+          {bgOptions.map((item) => (
+            <RadioButton className="w-full" key={item.value} value={item.value}>
+              {item.label}
+            </RadioButton>
+          ))}
+        </RadioGroup>
+        {type === "color" ? (
+          <div className="mt-4 flex justify-between items-center space-x-4">
+            <ColorPicker
+              presets={presets}
+              className="flex-auto"
+              onChange={(value) => {
+                onSelect(value.toRgbString());
               }}
-              className="p-1 rounded-md border-2 border-transparent box-border opacity-65 hover:opacity-100 cursor-pointer"
-              onClick={() => onSelect(item.value)}
-            >
-              {type === "wallpaper" ? (
-                <div
-                  style={{ backgroundImage: `url(/images/wallpapers/${item.value}.jpg)` }}
-                  className="rounded-md bg-cover bg-center bg-no-repeat min-h-[44px]"
-                />
-              ) : null}
-              {type === "color" ? (
-                <div
-                  className="rounded-md w-full h-full min-h-[44px] opacity-80 hover:opacity-100 cursor-pointer"
-                  style={{
-                    background: item.value,
-                  }}
-                />
-              ) : null}
-            </div>
-          )}
-        />
-      ) : (
-        <div className="mt-4">
-          <Dragger onChange={onUpload} showUploadList={false}>
-            <InboxOutlined style={{ fontSize: 48 }} />
-            <div className="mt-2">点击或拖动图片</div>
-          </Dragger>
-        </div>
-      )}
+              showText
+            />
+            <Popover content={customBgContent} title="自定义样式代码" trigger="click">
+              <Button className="flex-auto" type="primary" icon={<ToolFilled />}>
+                代码
+              </Button>
+            </Popover>
+          </div>
+        ) : null}
+
+        {type !== "custom" ? (
+          <List
+            grid={{ column: 5 }}
+            className="mt-4 gap-1"
+            dataSource={listOptions}
+            renderItem={(item) => (
+              <div
+                style={{
+                  opacity: value === item.value ? 1 : undefined,
+                  border: value === item.value ? "2px solid #f18446" : undefined,
+                }}
+                className="p-1 rounded-md border-2 border-transparent box-border opacity-65 hover:opacity-100 cursor-pointer"
+                onClick={() => onSelect(item.value)}
+              >
+                {type === "wallpaper" ? (
+                  <div
+                    style={{ backgroundImage: `url(/images/wallpapers/${item.value}.jpg)` }}
+                    className="rounded-md bg-cover bg-center bg-no-repeat min-h-[44px]"
+                  />
+                ) : null}
+                {type === "color" ? (
+                  <div
+                    className="rounded-md w-full h-full min-h-[44px] opacity-80 hover:opacity-100 cursor-pointer"
+                    style={{
+                      background: item.value,
+                    }}
+                  />
+                ) : null}
+              </div>
+            )}
+          />
+        ) : (
+          <div className="mt-4">
+            <Dragger onChange={onUpload} showUploadList={false}>
+              <InboxOutlined style={{ fontSize: 48 }} />
+              <div className="mt-2">点击或拖动图片</div>
+            </Dragger>
+          </div>
+        )}
+      </div>
     </>
   );
 };

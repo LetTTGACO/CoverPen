@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import type { InputNumberProps, SliderSingleProps } from "antd";
-import { Col, InputNumber, Row, Slider } from "antd";
+import { InputNumber, Slider } from "antd";
 
 interface SliderInputProps extends SliderSingleProps {
   value?: number;
@@ -18,20 +18,16 @@ const SliderInput: React.FC<SliderInputProps> = ({ value, onChange, ...rest }) =
     setInputValue(Number(value) || 0);
   }, [value]);
   return (
-    <Row gutter={10}>
-      <Col span={18}>
-        <Slider {...rest} onChange={handleChange} value={inputValue} />
-      </Col>
-      <Col span={6}>
-        <InputNumber
-          min={rest.min}
-          max={rest.max}
-          step={rest.step as number}
-          value={inputValue}
-          onChange={handleChange}
-        />
-      </Col>
-    </Row>
+    <div className="flex items-center justify-between">
+      <Slider {...rest} onChange={handleChange} value={inputValue} className="w-full mr-4" />
+      <InputNumber
+        min={rest.min}
+        max={rest.max}
+        step={rest.step as number}
+        value={inputValue}
+        onChange={handleChange}
+      />
+    </div>
   );
 };
 
