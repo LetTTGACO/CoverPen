@@ -5,10 +5,10 @@ import Image from "next/image";
 import { ThemeFormValue } from "@/types";
 
 const ModernTheme: FC<ThemeFormValue> = (props) => {
-  const { width, aspectRatio, title, borderRadius, background, author, icon, font, customIcon } = props;
+  const { style, width, aspectRatio, title, borderRadius, background, author, icon, font, customIcon } = props;
 
   return (
-    <div className="m-auto bg-white " style={{ background, width: `${width}px` }}>
+    <div className="m-auto bg-white " style={{ background, width: `${width}px`, ...style }}>
       <div className=" overflow-y-hidden w-full flex  items-center" style={{ aspectRatio }}>
         <div className={` m-auto h-full p-4 text-gray-800 flex  items-center`} style={{ aspectRatio }}>
           {customIcon ? (

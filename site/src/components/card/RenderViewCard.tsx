@@ -18,9 +18,22 @@ function RenderViewCard() {
         return `url('/images/wallpapers/${formValue.background.value}.jpg') center center / auto 100%`;
       case "custom":
         return `url(${formValue.background.value}) center center / auto 100%`;
+      case "color":
+        if (typeof formValue.background.value === "string") {
+          return formValue.background.value;
+        }
+        return "";
       default:
-        return formValue.background.value;
+        return "";
     }
+  }, [formValue.background]);
+
+  const style = useMemo(() => {
+    const { type, value } = formValue.background;
+    if (type === "color" && typeof value === "object") {
+      return formValue.background.value;
+    }
+    return {};
   }, [formValue.background]);
 
   const title = useMemo(() => {
@@ -39,19 +52,57 @@ function RenderViewCard() {
   const selectTheme = (theme: string) => {
     switch (theme) {
       case "basic":
-        return <BasicTheme {...formValue} title={title} background={background} borderRadius={borderRadius} />;
+        return (
+          <BasicTheme {...formValue} style={style} title={title} background={background} borderRadius={borderRadius} />
+        );
       case "modern":
-        return <ModernTheme {...formValue} title={title} background={background} borderRadius={borderRadius} />;
+        return (
+          <ModernTheme {...formValue} style={style} title={title} background={background} borderRadius={borderRadius} />
+        );
       case "outline":
-        return <OutlineTheme {...formValue} title={title} background={background} borderRadius={borderRadius} />;
+        return (
+          <OutlineTheme
+            {...formValue}
+            style={style}
+            title={title}
+            background={background}
+            borderRadius={borderRadius}
+          />
+        );
       case "preview":
-        return <PreviewTheme {...formValue} title={title} background={background} borderRadius={borderRadius} />;
+        return (
+          <PreviewTheme
+            {...formValue}
+            style={style}
+            title={title}
+            background={background}
+            borderRadius={borderRadius}
+          />
+        );
       case "stylish":
-        return <StylishTheme {...formValue} title={title} background={background} borderRadius={borderRadius} />;
+        return (
+          <StylishTheme
+            {...formValue}
+            style={style}
+            title={title}
+            background={background}
+            borderRadius={borderRadius}
+          />
+        );
       case "mobile":
-        return <MobileMockupTheme {...formValue} title={title} background={background} borderRadius={borderRadius} />;
+        return (
+          <MobileMockupTheme
+            {...formValue}
+            style={style}
+            title={title}
+            background={background}
+            borderRadius={borderRadius}
+          />
+        );
       default:
-        return <BasicTheme {...formValue} title={title} background={background} borderRadius={borderRadius} />;
+        return (
+          <BasicTheme {...formValue} style={style} title={title} background={background} borderRadius={borderRadius} />
+        );
     }
   };
   return selectTheme(formValue.theme);

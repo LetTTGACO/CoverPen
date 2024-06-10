@@ -46,10 +46,6 @@ export default function Editor() {
     const type = imgType.replace(/^\S/, (s) => s.toUpperCase());
     // @ts-ignore
     const func = domtoimage[`to${type}`];
-
-    // console.log(element)
-    // console.log(element.offsetHeight)
-
     let data = await func(element, {
       height: element.offsetHeight * size,
       width: element.offsetWidth * size,

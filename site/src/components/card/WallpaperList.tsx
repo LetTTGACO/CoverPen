@@ -1,11 +1,13 @@
 "use client";
 
-import React, { FC, useEffect, useMemo, useState } from "react";
-import { Button, ColorPicker, Input, type ColorPickerProps, List, Popover, Radio, theme, Upload } from "antd";
+import React, { CSSProperties, FC, useEffect, useMemo, useState } from "react";
+import { Button, ColorPicker, Input, type ColorPickerProps, List, Radio, theme, Upload, Popconfirm } from "antd";
 import { generate, green, presetPalettes, red } from "@ant-design/colors";
 import { InboxOutlined, PlusOutlined, ToolFilled } from "@ant-design/icons";
 import Link from "next/link";
 import { bgOptions, gradationData, wallpaperList } from "@/const";
+import parse from "style-to-object";
+import { CSSObject } from "@ant-design/cssinjs";
 const { Group: RadioGroup, Button: RadioButton } = Radio;
 const { Dragger } = Upload;
 const { TextArea } = Input;
@@ -16,12 +18,14 @@ const genPresets = (presets = presetPalettes) =>
 
 interface WallpaperListProps {
   value?: { type: string; value: string };
-  onChange?: (value: { type: string; value: string }) => void;
+  onChange?: (value: { type: string; value: string | CSSProperties }) => void;
 }
 
 const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) => {
   const [value, setValue] = useState<string | undefined>(initValue?.value);
   const [type, setType] = useState<string>(initValue?.type || "color");
+
+  const [customBg, setCustomBg] = useState("");
 
   useEffect(() => {
     if (initValue) {
@@ -67,9 +71,25 @@ const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) =
       <div className="mt-2">
         <Link href="https://cssgradient.io/">cssgradient.io</Link>： 利用在线工定制渐变色
       </div>
-      <TextArea className="mt-4" rows={6} placeholder="粘贴样式代码" />
+      <TextArea
+        value={customBg}
+        onChange={(text) => {
+          setCustomBg(text.target.value);
+        }}
+        className="mt-4"
+        rows={6}
+        placeholder="粘贴样式代码"
+      />
     </div>
   );
+
+  const handleCustomBg = () => {
+    const style = parse(customBg);
+    onChange?.({
+      type: "color",
+      value: style as CSSProperties,
+    });
+  };
 
   return (
     <>
@@ -91,11 +111,18 @@ const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) =
               }}
               showText
             />
-            <Popover content={customBgContent} title="自定义样式代码" trigger="click">
+            <Popconfirm
+              description={customBgContent}
+              title="自定义样式代码"
+              trigger="click"
+              okText="确认"
+              cancelText="取消"
+              onConfirm={handleCustomBg}
+            >
               <Button className="flex-auto" type="primary" icon={<ToolFilled />}>
                 代码
               </Button>
-            </Popover>
+            </Popconfirm>
           </div>
         ) : null}
 

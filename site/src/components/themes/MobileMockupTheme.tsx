@@ -7,7 +7,7 @@ import { ThemeFormValue } from "@/types";
 const { Dragger } = Upload;
 
 const MobileMockupTheme: FC<ThemeFormValue> = (props) => {
-  const { width, aspectRatio, background, title, font } = props;
+  const { style, width, aspectRatio, background, title, font } = props;
 
   const [image, setImage] = useState<string>();
 
@@ -19,7 +19,7 @@ const MobileMockupTheme: FC<ThemeFormValue> = (props) => {
     <div className="bg-white">
       <div
         className={`overflow-y-hidden flex flex-row items-center justify-center px-8 pt-4 mx-auto`}
-        style={{ background, width: `${width}px`, aspectRatio }}
+        style={{ background, width: `${width}px`, aspectRatio, ...style }}
       >
         <h1 className={`${font} text-2xl w-1/2 md:text-4xl px-4 text-white font-bold text-left`}>{title}</h1>
 

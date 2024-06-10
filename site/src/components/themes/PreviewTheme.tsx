@@ -7,7 +7,7 @@ import { ThemeFormValue } from "@/types";
 const { Dragger } = Upload;
 
 const PreviewTheme: FC<ThemeFormValue> = (props) => {
-  const { aspectRatio, width, background, title, font } = props;
+  const { style, aspectRatio, width, background, title, font } = props;
 
   const [image, setImage] = useState<string>();
 
@@ -19,7 +19,7 @@ const PreviewTheme: FC<ThemeFormValue> = (props) => {
     <div className="bg-white">
       <div
         className={`overflow-y-hidden flex flex-col px-4 pt-4 mx-auto`}
-        style={{ background, width: `${width}px`, aspectRatio }}
+        style={{ background, width: `${width}px`, aspectRatio, ...style }}
       >
         <h1 className={`${font} text-2xl md:text-3xl p-10 text-white font-bold text-center`}>{title}</h1>
 

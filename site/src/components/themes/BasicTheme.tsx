@@ -5,12 +5,12 @@ import Image from "next/image";
 import { ThemeFormValue } from "@/types";
 
 const BasicTheme: FC<ThemeFormValue> = (props) => {
-  const { title, background, borderRadius, author, icon, font, customIcon, aspectRatio, width } = props;
+  const { style, title, background, borderRadius, author, icon, font, customIcon, aspectRatio, width } = props;
 
   return (
     <div
       className={`mx-auto h-auto my-0 flex text-gray-800 items-center`}
-      style={{ background, width: `${width}px`, aspectRatio }}
+      style={{ background, width: `${width}px`, aspectRatio, ...style }}
     >
       <div className={`${font} bg-white w-10/12  m-auto flex flex-col pt-10 rounded-xl`} style={{ borderRadius }}>
         <div className="px-12">

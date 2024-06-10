@@ -8,7 +8,7 @@ import { ThemeFormValue } from "@/types";
 const { Dragger } = Upload;
 
 const StylishTheme: FC<ThemeFormValue> = (props) => {
-  const { borderRadius, aspectRatio, width, title, author, font, icon, customIcon, background } = props;
+  const { style, borderRadius, aspectRatio, width, title, author, font, icon, customIcon, background } = props;
 
   const [image, setImage] = useState<string>();
 
@@ -19,7 +19,7 @@ const StylishTheme: FC<ThemeFormValue> = (props) => {
     <div className="bg-white">
       <div
         className={` overflow-y-hidden flex flex-col mx-auto `}
-        style={{ background, width: `${width}px`, aspectRatio }}
+        style={{ background, width: `${width}px`, aspectRatio, ...style }}
       >
         <div
           style={{ borderRadius }}

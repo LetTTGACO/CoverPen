@@ -4,13 +4,13 @@ import React, { FC } from "react";
 import Image from "next/image";
 import { ThemeFormValue } from "@/types";
 const OutlineTheme: FC<ThemeFormValue> = (props) => {
-  const { width, aspectRatio, title, background, author, icon, font, customIcon } = props;
+  const { style, width, aspectRatio, title, background, author, icon, font, customIcon } = props;
 
   return (
     <div className="bg-white ">
       <div
         className={`m-auto overflow-y-hidden flex flex-col text-gray-800 px-10 `}
-        style={{ background, width: `${width}px`, aspectRatio }}
+        style={{ background, width: `${width}px`, aspectRatio, ...style }}
       >
         <div className={`${font}  rounded-2xl py-6 flex flex-col  `}>
           {customIcon ? (

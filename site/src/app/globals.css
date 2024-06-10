@@ -24,3 +24,28 @@
 ::-webkit-scrollbar {
   width: 0px;
 }
+
+.ant-popconfirm .ant-popconfirm-buttons {
+  text-align: end;
+  white-space: nowrap;
+}
+.ant-popconfirm .ant-popconfirm-message {
+  margin-bottom: 8px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: start;
+}
+
+/*.ant-popover .ant-popover-inner-content {*/
+/*  color: var(--ant-color-text);*/
+/*  padding: var(--ant-popover-inner-content-padding);*/
+/*}*/
+
+.ant-popconfirm .ant-popconfirm-message >.ant-popconfirm-message-icon .anticon {
+  line-height: 1;
+  margin-inline-end: 8px;
+}
+
+.ant-popconfirm .ant-popconfirm-buttons button {
+  margin-inline-start: 8px;
+}

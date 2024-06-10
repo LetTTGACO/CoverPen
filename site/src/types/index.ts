@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
+import { CSSObject } from "@ant-design/cssinjs";
 
 export interface BaseFormValue {
   /** 主题 */
@@ -31,6 +32,7 @@ export interface FormValue extends BaseFormValue {
 
 export interface ThemeFormValue extends BaseFormValue {
   background: string;
+  style: CSSProperties;
   /** 标题 */
   title: ReactNode[];
 }
