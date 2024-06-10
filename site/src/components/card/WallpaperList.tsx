@@ -75,7 +75,7 @@ const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) =
         <Link href="https://cssgradient.io/" target="_blank">
           cssgradient.io
         </Link>
-        ： 利用在线工定制渐变色
+        ： 利用在线工具定制渐变色
       </div>
       <TextArea
         value={customBg}
