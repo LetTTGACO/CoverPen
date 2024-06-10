@@ -66,10 +66,16 @@ const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) =
   const customBgContent = (
     <div className="max-w-80">
       <div>
-        <Link href="https://uigradients.com/">uiGradients</Link> ：拷贝心仪的渐变色 CSS 样式代码
+        <Link href="https://uigradients.com/" target="_blank">
+          uiGradients
+        </Link>{" "}
+        ：拷贝心仪的渐变色 CSS 样式代码
       </div>
       <div className="mt-2">
-        <Link href="https://cssgradient.io/">cssgradient.io</Link>： 利用在线工定制渐变色
+        <Link href="https://cssgradient.io/" target="_blank">
+          cssgradient.io
+        </Link>
+        ： 利用在线工定制渐变色
       </div>
       <TextArea
         value={customBg}
