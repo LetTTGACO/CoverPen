@@ -1,0 +1,2 @@
+"i18n-ally.localesPaths": ["../site/src/locales"], // E.g. "./messages"
+"i18n-ally.keystyle": "nested"

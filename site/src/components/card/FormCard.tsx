@@ -8,10 +8,12 @@ import ThemeList from "@/components/card/ThemeList";
 import SliderInput from "@/components/SliderInput";
 import { FormValue } from "@/types";
 import { aspectRatio, fontOptions, iconOptions } from "@/const";
+import { useTranslations } from "next-intl";
 const FormItem = Form.Item;
 const TextArea = Input.TextArea;
 
 const FormCard = forwardRef(function FormCard(props, ref) {
+  const t = useTranslations("Editor");
   const setState = useFormStore.setState;
   const formValue = useFormStore();
   const [form] = Form.useForm();
@@ -49,11 +51,11 @@ const FormCard = forwardRef(function FormCard(props, ref) {
 
   return (
     <Form form={form} layout="vertical" initialValues={formValue} onValuesChange={onChange} className="p-5 pb-16">
-      <FormItem label={<Label>主题</Label>} name="theme">
+      <FormItem label={<Label>{t("theme")}</Label>} name="theme">
         <ThemeList />
       </FormItem>
 
-      <FormItem label={<Label>比例</Label>} name="aspectRatio">
+      <FormItem label={<Label>{t("ratio")}</Label>} name="aspectRatio">
         <Select
           options={aspectRatio}
           optionRender={(option) => (
@@ -67,18 +69,18 @@ const FormCard = forwardRef(function FormCard(props, ref) {
         />
       </FormItem>
 
-      <FormItem label={<Label>标题</Label>} name="title">
-        <TextArea rows={1} placeholder="请输入标题" autoSize />
+      <FormItem label={<Label>{t("title")}</Label>} name="title">
+        <TextArea rows={1} placeholder={t("title_input_placeholder")} autoSize />
       </FormItem>
       {!["preview", "mobile"].includes(formValue.theme) && (
-        <FormItem label={<Label>作者</Label>} name="author">
-          <Input name="author" placeholder="请填写作者" />
+        <FormItem label={<Label>{t("author")}</Label>} name="author">
+          <Input name="author" placeholder={t("author_input_placeholder")} />
         </FormItem>
       )}
       {!["preview", "mobile"].includes(formValue.theme) && (
-        <Form.Item label={<Label>图标</Label>}>
+        <Form.Item label={<Label>{t("icon")}</Label>}>
           <div className="flex items-center justify-between">
-            <FormItem noStyle label={<Label>图标</Label>} name="icon">
+            <FormItem noStyle label={<Label>{t("icon")}</Label>} name="icon">
               <Select
                 showSearch
                 className="mr-4"
@@ -96,22 +98,22 @@ const FormCard = forwardRef(function FormCard(props, ref) {
 
             <FormItem noStyle name="customIcon">
               <Upload showUploadList={false}>
-                <Button icon={<UploadOutlined />}>自定义</Button>
+                <Button icon={<UploadOutlined />}>{t("custom")}</Button>
               </Upload>
             </FormItem>
           </div>
         </Form.Item>
       )}
 
-      <FormItem label={<Label>宽度</Label>} name="width">
+      <FormItem label={<Label>{t("width")}</Label>} name="width">
         <SliderInput step={1} max={1000} min={400} />
       </FormItem>
       {!["preview", "outline", "mobile"].includes(formValue.theme) && (
-        <FormItem label={<Label>圆角</Label>} name="borderRadius">
+        <FormItem label={<Label>{t("rounded")}</Label>} name="borderRadius">
           <SliderInput step={1} max={100} min={0} />
         </FormItem>
       )}
-      <FormItem label={<Label>背景</Label>} name="background">
+      <FormItem label={<Label>{t("background")}</Label>} name="background">
         <WallpaperList />
       </FormItem>
       {/*TODO Font 字体支持*/}

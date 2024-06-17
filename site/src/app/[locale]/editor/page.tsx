@@ -5,11 +5,14 @@ import { Button, Dropdown, Layout, notification, Space } from "antd";
 import React, { useRef, useState } from "react";
 import useFormStore, { defaultValue } from "@/hooks/useFormStore";
 import domtoimage from "dom-to-image";
+import { useTranslations } from "next-intl";
+
 import { dropdownItems } from "@/const";
 const DropdownButton = Dropdown.Button;
 const { Footer, Sider, Content } = Layout;
 
 export default function Editor() {
+  const t = useTranslations("Editor");
   const { setState } = useFormStore;
   const [loading, setLoading] = useState<boolean>(false);
   const componentRef = React.createRef<HTMLDivElement>();
@@ -83,12 +86,11 @@ export default function Editor() {
         height: element.offsetHeight + "px",
       },
     });
-    // 复制到剪贴板
     const item = new ClipboardItem({ "image/png": data });
     await navigator.clipboard.write([item]);
     notification.open({
-      message: "复制成功",
-      description: "复制到剪贴板成功",
+      message: t("copy_success"),
+      description: t("copy_success_desc"),
     });
   };
 
@@ -113,12 +115,12 @@ export default function Editor() {
         <Footer className="flex items-center justify-between bg-white h-[64px] w-full p-0 text-center fixed bottom-0 border-t-[1px] z-10">
           <div className="lg:w-[400px] lg:ml-0 ml-4">
             <Button type="primary" onClick={handleReset}>
-              重置样式
+              {t("reset_style")}
             </Button>
           </div>
           <div className="flex items-center h-full float-right mr-4 justify-center">
             <Button type="primary" onClick={handleCopy}>
-              复制
+              {t("copy")}
             </Button>
             <DropdownButton
               type="primary"
@@ -130,7 +132,7 @@ export default function Editor() {
               onClick={() => handleDownload("png", 1)}
               loading={loading}
             >
-              下载
+              {t("download")}
             </DropdownButton>
           </div>
         </Footer>

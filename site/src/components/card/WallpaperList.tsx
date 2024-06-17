@@ -5,9 +5,10 @@ import { Button, ColorPicker, Input, type ColorPickerProps, List, Radio, theme, 
 import { generate, green, presetPalettes, red } from "@ant-design/colors";
 import { InboxOutlined, PlusOutlined, ToolFilled } from "@ant-design/icons";
 import Link from "next/link";
-import { bgOptions, gradationData, wallpaperList } from "@/const";
+import { gradationData, wallpaperList } from "@/const";
 import parse from "style-to-object";
 import { CSSObject } from "@ant-design/cssinjs";
+import { useTranslations } from "next-intl";
 const { Group: RadioGroup, Button: RadioButton } = Radio;
 const { Dragger } = Upload;
 const { TextArea } = Input;
@@ -22,6 +23,7 @@ interface WallpaperListProps {
 }
 
 const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) => {
+  const t = useTranslations("Editor");
   const [value, setValue] = useState<string | undefined>(initValue?.value);
   const [type, setType] = useState<string>(initValue?.type || "color");
 
@@ -59,6 +61,12 @@ const WallpaperList: FC<WallpaperListProps> = ({ value: initValue, onChange }) =
       return gradationData;
     }
   }, [type]);
+
+  const bgOptions = [
+    { label: t("gradient"), value: "color" },
+    { label: t("wallpaper"), value: "wallpaper" },
+    { label: t("import"), value: "custom" },
+  ];
 
   const { token } = theme.useToken();
   const presets = genPresets({ primary: generate(token.colorPrimary), red, green });
