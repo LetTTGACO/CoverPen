@@ -5,7 +5,7 @@ import { Button, ColorPicker, Input, type ColorPickerProps, List, Radio, theme, 
 import { generate, green, presetPalettes, red } from "@ant-design/colors";
 import { InboxOutlined, PlusOutlined, ToolFilled } from "@ant-design/icons";
 import Link from "next/link";
-import { bgOptions, gradationData, wallpaperList } from "@/const";
+import { gradationData, wallpaperList } from "@/const";
 import parse from "style-to-object";
 import { CSSObject } from "@ant-design/cssinjs";
 import { useTranslations } from "next-intl";
