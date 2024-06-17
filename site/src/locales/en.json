@@ -1,0 +1,24 @@
+{
+  "Editor": {
+    "theme": "Theme",
+    "ratio": "Ratio",
+    "title": "Title",
+    "title_input_placeholder": "Please enter the title",
+    "author": "Author",
+    "author_input_placeholder": "Please enter the author",
+    "icon": "Icon",
+    "width": "Width",
+    "rounded": "Rounded",
+    "background": "Background",
+    "code": "Code",
+    "copy": "Copy",
+    "custom": "Custom",
+    "download": "Download",
+    "reset_style": "Reset Style",
+    "copy_success": "Copied Success",
+    "copy_success_desc": "Copied to clipboard successfully",
+    "gradient": "Gradient",
+    "wallpaper": "Wallpaper",
+    "import": "Import"
+  }
+}

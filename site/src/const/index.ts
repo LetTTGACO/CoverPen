@@ -2008,12 +2008,6 @@ export const wallpaperList = [
   },
 ];
 
-export const bgOptions = [
-  { label: "渐变", value: "color" },
-  { label: "墙纸", value: "wallpaper" },
-  { label: "导入", value: "custom" },
-];
-
 export const dropdownItems = [
   {
     key: "png,1",

@@ -2,16 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../public/icons/logo.png";
-import cover1 from "../../public/images/cover1.webp";
-import cover2 from "../../public/images/cover2.webp";
-import cover3 from "../../public/images/cover3.webp";
-import cover4 from "../../public/images/cover4.webp";
+import logo from "../../../public/icons/logo.png";
+import cover1 from "../../../public/images/cover1.webp";
+import cover2 from "../../../public/images/cover2.webp";
+import cover3 from "../../../public/images/cover3.webp";
+import cover4 from "../../../public/images/cover4.webp";
 
-import step1 from "../../public/images/step1.png";
-import step2 from "../../public/images/step2.png";
-import hashnodeLogo from "../../public/images/hashnode-logo.png";
-import devLogo from "../../public/images/dev-logo.png";
+import step1 from "../../../public/images/step1.png";
+import step2 from "../../../public/images/step2.png";
+import hashnodeLogo from "../../../public/images/hashnode-logo.png";
+import devLogo from "../../../public/images/dev-logo.png";
 
 export default function Home() {
   return (
